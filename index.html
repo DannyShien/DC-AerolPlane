@@ -8,39 +8,28 @@
     <title>Document</title>
 </head>
 <body>
-    <!-- 
-        Please insert a Title for the page 
-    -->
     <h1>TITLE</h1>
-<br><br>
-    <!-- 
-        A brief description or instruction of what needs to be inputed and what to expect
-     -->
-    <h3>Description of what this page does</h3>
-<br><br>
-     <label>
-        Please enter the flight number:
-        <input 
-            type="text"
-            name="flightNumber"
-            placeholder="DL 388"
-        >
+    <label> Please enter the flight number:
+        <input type="text" name="flightNumber" placeholder="DL 388">
     </label>
     <button data-flightStarter data-weatherStarter data-mapStarter>Find flight</button>
-<br><br>
+
     <div class="mainContainer">
-        <div class="infoColumn">Inner Div holding info 
-            <div class="columnOne" data-infoOne></div>
-            <div class="columnTwo" data-infoTwo></div>
+        <div class="columnContainer">
+            <div class="infoColumn">Inner Div holding info
+                <div class="columnOne" data-infoOne></div>
+                <div class="columnTwo" data-infoTwo></div>
+            </div>
+
+            <div class="weatherColumn" data-weatherInfo>Weather section</div>
         </div>
-        <div class="weatherColumn" data-weatherInfo>Weather section</div>
     </div>
-    <div data-mapDisplay></div>
 
+    <div class="mapContainer" data-mapDisplay>
+        <div class="map"></div>
+    </div>
 
-    
-
-    <script src="scripts/config.js"></script>
+    <!-- <script src="scripts/config.js"></script> -->
     <script src="scripts/index.js"></script>
 </body>
 </html>
