@@ -8,17 +8,20 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Flight Tracker</h1>
-    <button data-flightInfo>Flight Info</button>
+    <h1>TITLE</h1>
+    <label> Please enter the flight number:
+        <input type="text" name="flightNumber" placeholder="DL 388">
+    </label>
+    <button data-flightStarter data-weatherStarter data-mapStarter>Find flight</button>
 
     <div class="mainContainer">
         <div class="columnContainer">
             <div class="infoColumn">Inner Div holding info
-                <div class="columnOne" data-InfoOne></div>
-                <div class="columnTwo" data-InfoTwo></div>
+                <div class="columnOne" data-infoOne></div>
+                <div class="columnTwo" data-infoTwo></div>
             </div>
 
-            <div class="weatherColumn">Weather section</div>
+            <div class="weatherColumn" data-weatherInfo>Weather section</div>
         </div>
     </div>
 
