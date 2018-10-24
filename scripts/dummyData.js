@@ -156,7 +156,7 @@ const countryData = {
     "phonePrefix": "376"
 };
 
-const dummyData = {
+const weatherData = {
     "coord": {
         "lon": -84.39,
         "lat": 33.75
