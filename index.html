@@ -26,15 +26,16 @@
             placeholder="DL 388"
         >
     </label>
-    <button data-button>Find flight</button>
+    <button data-flightStarter data-weatherStarter data-mapStarter>Find flight</button>
 <br><br>
-    <div class="bigDiv">Big Div holding info and weather
+    <div class="mainContainer">
         <div class="infoColumn">Inner Div holding info 
-            <div class="partOneColumn" data-partOne>Part one of the info</div>
-            <div class="partTwoColumn" data-partTwo>Part two of the info</div>
+            <div class="columnOne" data-infoOne></div>
+            <div class="columnTwo" data-infoTwo></div>
         </div>
-        <div class="weatherColumn">Weather section</div>
+        <div class="weatherColumn" data-weatherInfo>Weather section</div>
     </div>
+    <div data-mapDisplay></div>
 
 
     
