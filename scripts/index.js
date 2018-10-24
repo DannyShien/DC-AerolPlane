@@ -25,7 +25,7 @@ const weatherElement = document.querySelector('[data-weatherStarter]');
 const infoOneElement = document.querySelector('[data-infoOne]');
 const infoTwoElement = document.querySelector('[data-infoTwo]');
 
-// Appends to weather column
+// Appends to weather info column
 const weatherInfoElement = document.querySelector('[data-weatherInfo]');
 
 // Display map 
@@ -198,12 +198,12 @@ function initMap(){
     const y = parseInt(coordinates_long);
 
     // The coordinates of flight
-    let iss = {lat: x, lng: y};
+    let flightCoordinates = {lat: x, lng: y};
     // Displaying the map and centered on flight
-    let map = new google.maps.Map(mapDisplayElement, {zoom: 4, center: iss});
+    let flightTrack = new google.maps.Map(mapDisplayElement, {zoom: 4, center: flightCoordinates});
     // Displaying the marker and positioning on flight
-    var marker = new google.maps.Marker({position: iss, map: map});
-    return map;
+    var tracker = new google.maps.Marker({position: flightCoordinates, map: flightTrack});
+    return tracker;
 };
 
 
