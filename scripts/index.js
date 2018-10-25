@@ -43,9 +43,12 @@ function getFlightInfo(){
     fetch("http://aviation-edge.com/v2/public/timetable?key=5f3420-01f81d&iataCode=JFK&type=departure")
     .then(r => r.json())
     .then((data) => {
-        console.log(data);
+        // console.log(data);
+        const labelInfoElement = document.querySelector('[data-inputInfo]');
+        debugger;
+        let valuePath = labelInfoElement;
         let flightNumbers = data.filter(placement => {
-            return 'LX23' === placement.flight.iataNumber})
+            return valuePath === placement.flight.iataNumber})
             // console.log(flightNumbers);
             return flightNumbers;
     })
