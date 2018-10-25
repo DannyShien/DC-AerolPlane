@@ -69,22 +69,22 @@ function getFlightInfo(event){
             })
     // extracting specific info from api and returning the complete result as an array
         .then((data) => { //aircraft holds all the info [3]
-            console.log(data);
-            console.log(data[0][0].flight.iataNumber);
-            debugger;
-            // let departData = data[0];
-            // let arrivalData = data[1];
-            // console.log(departData[0]);
+            // console.log(data);
+            // console.log(data[0][0].flight.iataNumber);
+            // debugger;
+            let departData = data[0];
+            let arrivalData = data[1];
+            // console.log(departData[0].flight.iataNumber);
             // filtering through each array seperately
-            // let departObj = departData.filter((placeholder) => {
-            //     return "BA4367" === placeholder.flight.iataNumber
-            // })
-            // let arrivalObj = arrivalData.filter((placeholder) => {
-            //     return "BA4367" === placeholder.flight.iataNumber
-            // })
+            let departObj = departData.filter((placeholder) => {
+                return "AS1407" === placeholder.flight.iataNumber;
+            })
+            let arrivalObj = arrivalData.filter((placeholder) => {
+                return "AM3725" === placeholder.flight.iataNumber;
+            })
 
-            // console.log(departObj);
-            // console.log(arrivalObj);
+            console.log(departObj);
+            console.log(arrivalObj);
                 // return flightNumbers;
         })
     // display those specific info received from api
