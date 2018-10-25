@@ -53,8 +53,8 @@ function getFlightInfo(event){
     
     // Setting variables to fetch individual apis for Flight info
     // let aircraftPromise = fetch("http://aviation-edge.com/v2/public/flights?key=5f3420-01f81d"); // aircrafts in flight
-    let aircraftDeparturePromise = fetch("http://aviation-edge.com/v2/public/timetable?key=5f3420-01f81d&iataCode=JFK&type=departure"); // this is only for departures at JFK airport
-    let aircraftArrivalPromise = fetch("http://aviation-edge.com/v2/public/timetable?key=5f3420-01f81d&iataCode=JFK&type=arrival"); // this is only for arrivals at JFK airport
+    let aircraftDeparturePromise = fetch("http://aviation-edge.com/v2/public/timetable?key=5f3420-01f81d&iataCode=JFK&type=departure");//.then(r => r.json());  // this is only for departures at JFK airport
+    let aircraftArrivalPromise = fetch("http://aviation-edge.com/v2/public/timetable?key=5f3420-01f81d&iataCode=JFK&type=arrival");//.then(r => r.json()); // this is only for arrivals at JFK airport
     // let aircraftDestinationPromise = fetch("https://aviation-edge.com/v2/public/countryDatabase?key=5f3420-01f81d&nameCountry=Andorra"); // this is destination country set to Andorra
     
     // Fetches all the apis and promises all into an array
@@ -65,17 +65,27 @@ function getFlightInfo(event){
         .then((responseArray) => {
             // console.log(responseArray);
             let newArray = responseArray.map(eachArray => eachArray.json())
-            return newArray;
+            return Promise.all(newArray);
             })
     // extracting specific info from api and returning the complete result as an array
         .then((data) => { //aircraft holds all the info [3]
             console.log(data);
-            console.log(data[0].flight);
-            // let flightNumbers = data.filter((placement) => {
-            //     return userFlightInput === placement.flight.iataNumber
+            console.log(data[0][0].flight.iataNumber);
+            debugger;
+            // let departData = data[0];
+            // let arrivalData = data[1];
+            // console.log(departData[0]);
+            // filtering through each array seperately
+            // let departObj = departData.filter((placeholder) => {
+            //     return "BA4367" === placeholder.flight.iataNumber
             // })
-            //     // console.log(flightNumbers);
-            //     return flightNumbers;
+            // let arrivalObj = arrivalData.filter((placeholder) => {
+            //     return "BA4367" === placeholder.flight.iataNumber
+            // })
+
+            // console.log(departObj);
+            // console.log(arrivalObj);
+                // return flightNumbers;
         })
     // display those specific info received from api
     // .then(assortAndDisplayFlightInfo)
