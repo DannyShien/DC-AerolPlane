@@ -10,40 +10,75 @@ html, body {
     width: 100%; 
     height: 100%; 
 }
+/* === === === HERO IMAGE === === === */
 
-/* === === MAIN CONTAINER ===  === */
+
+
+/* === === === MAIN CONTAINER === === === */
 .mainContainer {
     outline: 3px solid yellow; 
     background-color: lightcyan;
     /* display: flex; */
     
-    
 }
-.columnContainer {
+/* === === === FLIGHT - WEATHER COLUMN === === === */
+.mainColumn {
     outline: 1px solid red;
     /* max-width: 2000px; */
     display: flex;
     justify-content: center;
     justify-content: space-evenly;
-    /* max-height: 100%; */
     height: 400px;
-    padding-top: 20px;
+    padding-top: 15px;
     padding-bottom: 15px;
 }
-.infoColumn {
+.infoContainer {
     outline: 1px solid red;  
     background-color: lightgoldenrodyellow;
     box-sizing: border-box;
     /* flex: 1; */
     width: 45%;
+    text-align: center;
+}
+.infoTitle {
+    padding: 5px;
 }
 .weatherColumn {
     outline: 1px solid red;
     background-color: lightcoral;
     box-sizing: border-box;
-    /* flex: 1;     */
+    text-align: center;
     width: 45%;
 }
+/* === === === INFO - COLUMN ONE/TWO === === === */
+.infoColumn {
+    display: flex;
+    justify-content: center;
+    /* justify-content: space-evenly; */
+    height: 382px;
+    padding-bottom: 18px;
+}
+.columnOne {
+    background-color: white;
+    padding: 15px;
+    flex: 1;
+    margin: 0 2px 0 4px;
+    /* tex */
+}
+.columnTwo {
+    background-color: white;
+    padding: 15px;
+    flex: 1;
+    margin: 0 4px 0 2px;
+}
+p {
+    color: red;
+    /* font-size: 12px; */
+    /* text-align: ; */
+    /* MAYBE SET BULLETPOINTS? */
+}
+
+/* === === === MAP CONTAINER === === === */
 .mapContainer {
     background-color: lightgray;
     justify-content: center;
