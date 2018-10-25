@@ -16,6 +16,8 @@
 // ===========================
 // DOM selection
 // ===========================
+let locationForm = document.querySelector('[data-form]');
+
 // Button activator
 const flightElement = document.querySelector('[data-flightStarter]');
 const mapElement = document.querySelector('[data-mapStarter]');
@@ -39,14 +41,15 @@ const mapDisplayElement = document.querySelector('[data-mapDisplay]');
 // Flight info
 // ++++++++
 
-function getFlightInfo(){
+function getFlightInfo(event){
+    event.preventDefault();
+    const userFlightInput = document.querySelector('[data-inputInfo]').value;
     fetch("http://aviation-edge.com/v2/public/timetable?key=5f3420-01f81d&iataCode=JFK&type=departure")
     .then(r => r.json())
     .then((data) => {
         // console.log(data);
-        const labelInfoElement = document.querySelector('[data-inputInfo]');
-        debugger;
-        let valuePath = labelInfoElement;
+        // debugger;
+        let valuePath = userFlightInput;
         let flightNumbers = data.filter(placement => {
             return valuePath === placement.flight.iataNumber})
             // console.log(flightNumbers);
@@ -56,7 +59,7 @@ function getFlightInfo(){
 };
 
 function showData(resultsArray){
-    console.log(resultsArray);
+    console.log(resultsArray); // 
 };
 
 
@@ -284,9 +287,10 @@ function showData(resultsArray){
 // Main event Listener
 // ===========================
 function main(){
-    flightElement.addEventListener('click', getFlightInfo); // Ignited by click, go to getFlightInfo
+    // flightElement.addEventListener('click', getFlightInfo); // Ignited by click, go to getFlightInfo
     // weatherElement.addEventListener('click', getWeatherInfo); // Ignited by click, go to getWeatherInfo
     // mapElement.addEventListener('click', getLocator); // Ignited by click, go to getLocator
+    locationForm.addEventListener('submit', getFlightInfo);
 
     // //testing
     // testingElement.addEventListener('click', mergeAll); 
