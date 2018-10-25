@@ -42,25 +42,97 @@ const mapDisplayElement = document.querySelector('[data-mapDisplay]');
 // ++++++++
 
 function getFlightInfo(event){
+    // Check to see if the button is activated
+    // console.log("Button is good for flight, let's begin");
+    
+    // Holds onto submitted info from form
     event.preventDefault();
+    
+    // Connecting with <form>
     const userFlightInput = document.querySelector('[data-inputInfo]').value;
-    fetch("http://aviation-edge.com/v2/public/timetable?key=5f3420-01f81d&iataCode=JFK&type=departure")
-    .then(r => r.json())
-    .then((data) => {
-        // console.log(data);
-        // debugger;
-        let valuePath = userFlightInput;
-        let flightNumbers = data.filter(placement => {
-            return valuePath === placement.flight.iataNumber})
-            // console.log(flightNumbers);
-            return flightNumbers;
-    })
-    .then(showData)
+    
+    // Setting variables to fetch individual apis for Flight info
+    // let aircraftPromise = fetch("http://aviation-edge.com/v2/public/flights?key=5f3420-01f81d"); // aircrafts in flight
+    let aircraftDeparturePromise = fetch("http://aviation-edge.com/v2/public/timetable?key=5f3420-01f81d&iataCode=JFK&type=departure"); // this is only for departures at JFK airport
+    let aircraftArrivalPromise = fetch("http://aviation-edge.com/v2/public/timetable?key=5f3420-01f81d&iataCode=JFK&type=arrival"); // this is only for arrivals at JFK airport
+    // let aircraftDestinationPromise = fetch("https://aviation-edge.com/v2/public/countryDatabase?key=5f3420-01f81d&nameCountry=Andorra"); // this is destination country set to Andorra
+    
+    // Fetches all the apis and promises all into an array
+    Promise.all([aircraftDeparturePromise, aircraftArrivalPromise])  // add later aircraftDestinationPromise, aircraftPromise
+    // fetch("http://aviation-edge.com/v2/public/timetable?key=5f3420-01f81d&iataCode=JFK&type=departure")
+    
+    // converts to json
+        .then((responseArray) => {
+            // console.log(responseArray);
+            let newArray = responseArray.map(eachArray => eachArray.json())
+            return newArray;
+            })
+    // extracting specific info from api and returning the complete result as an array
+        .then((data) => { //aircraft holds all the info [3]
+            console.log(data);
+            console.log(data[0].flight);
+            // let flightNumbers = data.filter((placement) => {
+            //     return userFlightInput === placement.flight.iataNumber
+            // })
+            //     // console.log(flightNumbers);
+            //     return flightNumbers;
+        })
+    // display those specific info received from api
+    // .then(assortAndDisplayFlightInfo)
 };
 
-function showData(resultsArray){
-    console.log(resultsArray); // 
-};
+// function assortAndDisplayFlightInfo(resultsArray){
+    // console.log(resultsArray);
+    // console.log(resultsArray[0]) 
+// };
+
+// // Maps through the array to convert to json
+// function convertToJson(responseArray){
+//     let response = responseArray.map(aircraft => aircraft.json());
+//     // console.log(response);
+//     return response;
+// };
+
+// function extractFlightInfo(promiseArray){
+//     console.log(promiseArray)
+// };
+// // Extracts from json to retrieve specific data 
+// function extractFlightInfo((data) => { //aircraft holds all the info [4]
+//     // Holds onto submitted info from form
+//     event.preventDefault();
+    
+//     // Connecting with <form>
+//     const userFlightInput = document.querySelector('[data-inputInfo]').value;
+
+//     // console.log(data);
+//     // debugger;
+//     let valuePath = userFlightInput;
+//     let flightNumbers = data.filter(placement => {
+//         return valuePath === placement.flight.iataNumber})
+//         // console.log(flightNumbers);
+//         return flightNumbers;
+//     }       
+// )
+
+//     .then(r => r.json())
+//     .then((data) => {
+//         // console.log(data);
+//         // debugger;
+//         let valuePath = userFlightInput;
+//         let flightNumbers = data.filter(placement => {
+//             return valuePath === placement.flight.iataNumber})
+//             // console.log(flightNumbers);
+//             return flightNumbers;
+//     })
+//     .then(assortAndDisplayFlightInfo)
+// };
+
+
+
+
+
+
+
 
 
 // // Initiates getting flight info by going through convertToJson -> extractFlightInfo -> displayFlightInfo
@@ -247,6 +319,65 @@ function showData(resultsArray){
 
 
 
+
+
+
+
+// ===========================
+// Main event Listener
+// ===========================
+function main(){
+    // flightElement.addEventListener('click', getFlightInfo); // Ignited by click, go to getFlightInfo
+    // weatherElement.addEventListener('click', getWeatherInfo); // Ignited by click, go to getWeatherInfo
+    // mapElement.addEventListener('click', getLocator); // Ignited by click, go to getLocator
+    locationForm.addEventListener('submit', getFlightInfo); // Ignited by submit, receiving input user's info and processing it in getFlightInfo
+    
+    // //testing
+    // testingElement.addEventListener('click', mergeAll); 
+    console.log("Listening");
+};
+main();
+
+
+
+
+
+
+
+
+
+//+======+++++++++++=========+++++++++++++NOTES==========+++++++++++++
+// tracking down to specific object using flightnumber
+// function getFlightInfo(event){
+    //     event.preventDefault();
+    //     const userFlightInput = document.querySelector('[data-inputInfo]').value;
+    //     fetch("http://aviation-edge.com/v2/public/timetable?key=5f3420-01f81d&iataCode=JFK&type=departure")
+    //     .then(r => r.json())
+    //     .then((data) => {
+        //         // console.log(data);
+        //         const labelInfoElement = document.querySelector('[data-inputInfo]');
+        //         debugger;
+        //         let valuePath = labelInfoElement;
+        //         // debugger;
+        //         let valuePath = userFlightInput;
+        //         let flightNumbers = data.filter(placement => {
+            //             return valuePath === placement.flight.iataNumber})
+            //             // console.log(flightNumbers);
+            
+///=-=-=-=-=---=-=-==-=
+// one function that will run all the other functions
+// function function_one() {
+    //     function_two(); // considering the next alert, I figured you wanted to call function_two first
+    //     alert("The function called 'function_one' has been called.");
+    // }
+    
+    // function function_two() {
+        //     alert("The function called 'function_two' has been called.");
+        // }
+        
+        // function_one();
+
+//0909090909090909090909090909090
 // // // ~~~~~~~~~~~~~~~~~~~~~~~~~
 // // // promise.all testing
 // // // ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -280,87 +411,35 @@ function showData(resultsArray){
 
 // // };
 
-
-
-
-// ===========================
-// Main event Listener
-// ===========================
-function main(){
-    // flightElement.addEventListener('click', getFlightInfo); // Ignited by click, go to getFlightInfo
-    // weatherElement.addEventListener('click', getWeatherInfo); // Ignited by click, go to getWeatherInfo
-    // mapElement.addEventListener('click', getLocator); // Ignited by click, go to getLocator
-    locationForm.addEventListener('submit', getFlightInfo);
-
-    // //testing
-    // testingElement.addEventListener('click', mergeAll); 
-    console.log("Listening");
-};
-main();
-
-
-
-
-
-
-
-
-
-//+======+++++++++++=========+++++++++++++
-// filter method to get the specific object from a specific value
+//111111111111111111111111111111111111111111111111111111111111111
+     // Initiates getting flight info by going through convertToJson -> extractFlightInfo -> displayFlightInfo
 // function getFlightInfo(){
-//     fetch("http://aviation-edge.com/v2/public/timetable?key=5f3420-01f81d&iataCode=JFK&type=departure")
-//     .then(r => r.json())
-//     .then((data) => {
-//         console.log(data);
-//         let flightNumbers = data.filter(placement => {
-//             // debugger;
-//             return '8414' === placement.flight.number})
-//             console.log(flightNumbers);
-//                 // debugger;
-//                 // return placement;
+//     // Check to see if the button is activated
+//     console.log("Button is good for flight, let's begin");
 
+//     // Setting variables to fetch individual apis for Flight info
+//     let aircraftPromise = fetch("http://aviation-edge.com/v2/public/flights?key=f098eb-24953d"); // aircrafts in flight
+//     let aircraftDeparturePromise = fetch("http://aviation-edge.com/v2/public/timetable?key=f098eb-24953d&iataCode=JFK&type=departure"); // this is only for departures at JFK airport
+//     let aircraftArrivalPromise = fetch("http://aviation-edge.com/v2/public/timetable?key=f098eb-24953d&iataCode=JFK&type=arrival"); // this is only for arrivals at JFK airport
+//     let aircraftDestinationPromise = fetch("https://aviation-edge.com/v2/public/countryDatabase?key=f098eb-24953d&nameCountry=Andorra"); // this is destination country set to Andorra
 
-//     //         }else{
-//     //             // console.log("not here");
-//     //             // return;
-//     //         };
-//     //         })
-//     // })
-//     // .then(asdfjkl)
-//     });
+//     // fetches all the apis and promises all into an array
+//     Promise.all([aircraftPromise, aircraftDeparturePromise, aircraftArrivalPromise, aircraftDestinationPromise])
+//         // converts to json
+//         .then(convertToJson)
+//         // extracting specific info from api and returning the complete result as an array
+//         .then(extractFlightInfo)
+//         // // display those specific info received from api
+//         // .then(displayFlightInfo)
 // };
 
-// function asdfjkl(whatisit){
-    // debugger;
-    // console.log(whatisit);
+// // Maps through the array to convert to json
+// function convertToJson(responseArray){
+//     let response = responseArray.map(aircraft => aircraft.json());
+//     // console.log(response);
+//     return response;
 // };
 
-// looping through the large array to pinpoint down to the value we want to find
-// function getFlightInfo(){
-//     fetch("http://aviation-edge.com/v2/public/timetable?key=5f3420-01f81d&iataCode=JFK&type=departure")
-//     .then(r => r.json())
-//     .then((data) => {
-//         console.log(data);
-//         let flightNumbers = data.map(placement => {
-//             if ('8414' === placement.flight.number){
-//                 // debugger;
-//                 console.log(placement.flight.number);
-//                 console.log(placement);
-//                 // debugger;
-//                 return placement;
-
-
-//             }else{
-//                 // console.log("not here");
-//                 // return;
-//             };
-//             })
-//     })
-//     .then(asdfjkl)
-// }
-
-// function asdfjkl(whatisit){
-//     // debugger;
-//     console.log(whatisit);
-// };
+// // Extracts from json to retrieve specific data 
+// function extractFlightInfo(aircraft){ //aircraft holds all the info [4]
+//     console.log(aircraft)
