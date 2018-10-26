@@ -53,13 +53,13 @@ function getFlightInfo(event){
     
     // Setting variables to fetch individual apis for Flight info
     // let aircraftPromise = fetch("http://aviation-edge.com/v2/public/flights?key=5f3420-01f81d"); // aircrafts in flight
-    let aircraftDeparturePromise = fetch("http://aviation-edge.com/v2/public/timetable?key=5f3420-01f81d&iataCode=JFK&type=departure");//.then(r => r.json());  // this is only for departures at JFK airport
-    let aircraftArrivalPromise = fetch("http://aviation-edge.com/v2/public/timetable?key=5f3420-01f81d&iataCode=JFK&type=arrival");//.then(r => r.json()); // this is only for arrivals at JFK airport
+    let aircraftDeparturePromise = fetch("http://aviation-edge.com/v2/public/timetable?key=5f3420-01f81d&iataCode=ATL&type=departure");//.then(r => r.json());  // this is only for departures at ATL airport
+    let aircraftArrivalPromise = fetch("http://aviation-edge.com/v2/public/timetable?key=5f3420-01f81d&iataCode=ATL&type=arrival");//.then(r => r.json()); // this is only for arrivals at ATL airport
     // let aircraftDestinationPromise = fetch("https://aviation-edge.com/v2/public/countryDatabase?key=5f3420-01f81d&nameCountry=Andorra"); // this is destination country set to Andorra
     
     // Fetches all the apis and promises all into an array
     Promise.all([aircraftDeparturePromise, aircraftArrivalPromise])  // add later aircraftDestinationPromise, aircraftPromise
-    // fetch("http://aviation-edge.com/v2/public/timetable?key=5f3420-01f81d&iataCode=JFK&type=departure")
+    // fetch("http://aviation-edge.com/v2/public/timetable?key=5f3420-01f81d&iataCode=ATL&type=departure")
     
     // converts to json
         .then((responseArray) => {
@@ -68,24 +68,70 @@ function getFlightInfo(event){
             return Promise.all(newArray);
             })
     // extracting specific info from api and returning the complete result as an array
-        .then((data) => { //aircraft holds all the info [3]
+        .then((data) => { //aircraft holds all the info [2]
             // console.log(data);
-            // console.log(data[0][0].flight.iataNumber);
+            // console.log(data[1][0].type);
             // debugger;
+            // Finding the right level
             let departData = data[0];
             let arrivalData = data[1];
-            // console.log(departData[0].flight.iataNumber);
+            let departType = data[0];
+            let arrivalType = data[1];
+
+            // Connecting with <form>
+            const userFlightInput = document.querySelector('[data-inputInfo]').value;
+            // const userTypeInput = "departure or arrival"  //make it into document.querySelector('[data-typeInfo]').value
             // filtering through each array seperately
-            let departObj = departData.filter((placeholder) => {
-                return "AS1407" === placeholder.flight.iataNumber;
-            })
-            let arrivalObj = arrivalData.filter((placeholder) => {
-                return "AM3725" === placeholder.flight.iataNumber;
-            })
+            // debugger;
+            // let departObj = departData.filter((departFinder) => {
+            //     if (userFlightInput === departFinder.flight.iataNumber){
+            //         return userFlightInput === departFinder.flight.iataNumber;
+            //         }if ("departure" === departFinder.type){
+            //             return true;
+            //         }if (true && true){
+            //             return userFlightInput === departFinder.flight.iataNumber;
+            //         }else{
+            //             console.log("not here for departure");
+            //     }
+            // });
+            let departObj = departData.filter((departFinder) => {
+                debugger;
+                if (userFlightInput === departFinder.flight.iataNumber){
+                    return userFlightInput === departFinder.flight.iataNumber;
+                }else if ("arrival" === departFinder.type){
+                    return true;
+                }else{
+                    console.log("not here for arrival");
+                }
+            });
+            let departTypeObj = departType.filer((departTypeFinder) => {
+                if ("departure" === departTypeFinder.type){
+                    return departTypeObj === departTypeFinder.type;
+                }else if (departObj === departTypeObj){
+                    return userFlightInput === departFinder.flight.iataNumber;
+                }
+            });
+
+            let arrivalObj = arrivalData.filter((arrivalFinder) => {
+                if (userFlightInput === arrivalFinder.flight.iataNumber){
+                    return userFlightInput === arrivalFinder.flight.iataNumber;
+                }if ("arrival" === arrivalFinder.type){
+                    return true;
+                }else{
+                    console.log("not here for arrival");
+                }
+            });
+            // let arrivalTypeObj = arrivalType.filer((arrivalTypeFinder) => {
+            //     if ("arrival" === arrivalTypeFinder.type){
+            //         return arrivalTypeObj=== arrivalTypeFinder.type;
+            //     }if (arrivalObj === arrivalTypeObj){
+            //         return userFlightInput === arrivalFinder.flight.iataNumber;
+            //     }
+            // });    
 
             console.log(departObj);
             console.log(arrivalObj);
-                // return flightNumbers;
+                return flightNumbers;
         })
     // display those specific info received from api
     // .then(assortAndDisplayFlightInfo)
