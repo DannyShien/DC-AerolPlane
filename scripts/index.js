@@ -38,35 +38,39 @@ function getFlightInfo(){
 
             //Flight number
             const flightIataNumber = finder.flight.iataNumber;
-            let zero = dataCollector.push(flightIataNumber);
+            const textZero = `Flight Number: ${flightIataNumber}`;
+            let zero = dataCollector.push(textZero);
 
             //Status
             const currentStatus = finder.status;
-            let one = dataCollector.push(currentStatus);
+            const textOne = `Status: "${currentStatus}"`;
+            let one = dataCollector.push(textOne);
 
             //Coordinates
             const lat = finder.geography.latitude;
             const long = finder.geography.longitude;
-            let coordinates = [];
-            let x = coordinates.push(lat);
-            let y = coordinates.push(long);
-            let three = dataCollector.push(coordinates);
+            const textTwo = `Coordinates: (${lat}, ${long})`;
+            let three = dataCollector.push(textTwo);
 
             //Departure
             const depart = finder.departure.iataCode;
-            let four = dataCollector.push(depart);
+            const textThree = `Departure Airport: ${depart}`;
+            let four = dataCollector.push(textThree);
 
             //Arrival
             const arrive = finder.arrival.iataCode;
-            let five = dataCollector.push(arrive);
+            const textFour = `Arrival Airport: ${arrive}`;
+            let five = dataCollector.push(textFour);
 
             //Speed
             const mph = finder.speed.horizontal;
-            let six = dataCollector.push(mph);
+            const textFive = `Speed of Aircraft: ${mph}mph`;
+            let six = dataCollector.push(textFive);
 
             //Altitude
             const alt = finder.geography.altitude;
-            let seven = dataCollector.push(alt);
+            const textSix = `Altitude of Aircraft: ${alt}ft`;
+            let seven = dataCollector.push(textSix);
         })
         // console.log(dataCollector);
         return dataCollector;
@@ -78,43 +82,36 @@ function getFlightInfo(){
 
         //Flight Number
         const infoZero = document.createElement('li');
-        const textZero = `Flight Number: ${infoZero}`;
         infoZero.textContent = send[0];
         flightInfoElement.appendChild(infoZero);
 
         //Status
         const infoOne = document.createElement('li');
-        // const textOne = `Status: ${infoOne}`;
         infoOne.textContent = send[1];
         flightInfoElement.appendChild(infoOne);
         
         //Coordinates
         const infoTwo = document.createElement('li');
-        // const textTwo = `Coordinates: (${infoTwo})`;
         infoTwo.textContent = send[2];
         flightInfoElement.appendChild(infoTwo);
 
         //Departure
         const infoThree = document.createElement('li');
-        // const textThree = `Departed Airport: ${infoThree}`; //May need to change wording
         infoThree.textContent = send[3];
         flightInfoTwoElement.appendChild(infoThree);
 
         //Arrival
         const infoFour = document.createElement('li');
-        // const textFour = `Arriving Airport: ${infoFour}`; //May need to change wording
         infoFour.textContent = send[4];
         flightInfoTwoElement.appendChild(infoFour);
 
         //Speed
         const infoFive = document.createElement('li');
-        // const textFive = `Speed of Aircraft: ${infoFive}mph`;
         infoFive.textContent = send[5];
         flightInfoTwoElement.appendChild(infoFive);
 
         //Altitude
         const infoSix = document.createElement('li');
-        // const textSix = `Altitude of Aircraft: ${infoSix}ft`;
         infoSix.textContent = send[6];
         flightInfoTwoElement.appendChild(infoSix);
 
