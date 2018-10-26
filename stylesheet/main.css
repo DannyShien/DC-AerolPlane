@@ -10,13 +10,29 @@ html, body {
     width: 100%; 
     height: 100%; 
 }
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 /* === === === HERO CONTAINER === === === */
 .heroContainer{
-    display: flex;
-    background-color: lightskyblue;
-    align-items: center;
-    justify-content: center;
-    height: 533px;
+    /* display: flex; */
+    /* background-color: lightskyblue; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    height: 610px;
+    /* width: 1300px; */
+}
+.image {
+    /* background-image: url(../images/airplane.jpg); */
+    background-image: url(../images/airplane4.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    /* position: relative; */
 }
 .content {
     display: flex;
@@ -42,36 +58,50 @@ html, body {
 
 /* === === === MAIN CONTAINER === === === */
 .mainContainer {
-    /* outline: 3px solid yellow;  */
-    background-color: lightcyan;
+    /* background-color: lightcyan; */
+    /* display: flex;  */
+    /* justify-content: center; */
+    /* align-items: center; */
     /* display: flex; */
-    height: 533px;
+    height: 610px;
+    max-width: 100%;
 }
-/* === === === FLIGHT - WEATHER COLUMN === === === */
+.imageTwo {
+    background-image:  url(../images/airplane2.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+/* === === === FLIGHT / WEATHER COLUMN === === === */
 .mainColumn {
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
     height: 400px;
+    width: 90%;
     padding-top: 15px;
     padding-bottom: 15px;
 }
 .infoContainer {
     /* outline: 1px solid red;   */
-    background-color: lightgoldenrodyellow;
-    /* justify-content: center; */
-    /* align-content: center; */
+    /* background-color: lightgoldenrodyellow; */
+    /* background-color: rgba(0,0,0, 0.4); */
+    justify-content: center;
+    align-content: center;
     text-align: center;
     /* flex: 1; */
     width: 45%;
 }
 .infoTitle {
     padding: 5px;
+    background-color: rgba(255, 255, 255, 0.8);
 }
 .weatherContainer {
     /* outline: 1px solid red; */
-    background-color: lightcoral;
+    /* background-color: lightcoral; */
+    background-color: rgba(255, 255, 255, 0.8);
     text-align: center;
+    /* flex: 1; */
     width: 45%;
 }
 .weatherTitle{
@@ -84,16 +114,18 @@ html, body {
     /* justify-content: space-evenly; */
     height: 367px;
     padding-bottom: 18px;
+    background-color: rgba(255, 255, 255, 0.8);
 }
 .columnOne {
-    background-color: white;
+    /* background-color: white; */
+    background-color: rgba(255, 255, 255, 0);
     padding: 15px;
     flex: 1;
     margin: 0 2px 0 4px;
-    /* tex */
 }
 .columnTwo {
-    background-color: white;
+    /* background-color: white; */
+    background-color: rgba(255, 255, 255, 0);
     padding: 15px;
     flex: 1;
     margin: 0 4px 0 2px;
@@ -108,10 +140,10 @@ p {
 /* === === === MAP CONTAINER === === === */
 .mapContainer {
     background-color: lightgray;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    height: 533px;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    height: 610px;
 }
 .map {
     background-color: white;
