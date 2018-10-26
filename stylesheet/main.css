@@ -15,12 +15,18 @@ html, body {
     justify-content: center;
     align-items: center;
 }
-/* === === === HERO CONTAINER === === === */
-.heroContainer{
+.divider {
+    background-color: white;
+    /* background-image: linear-gradient(white, white, lightgray); */
+    height: 100px;
+}
+/* === === === HOME CONTAINER === === === */
+.homeContainer{
     /* background-color: lightskyblue; */
     /* height: 610px; */
     height: 535px;
-    /* width: 1300px; */
+    display: flex;
+    flex-direction: column;
 }
 .image {
     /* background-image: url(../images/airplane.jpg); */
@@ -29,8 +35,6 @@ html, body {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-
-    /* position: relative; */
 }
 .content {
     display: flex;
@@ -53,11 +57,33 @@ html, body {
     /* font-family: 'Pacifico', cursive; */
     font-family: 'Mukta Malar', sans-serif;
 }
-
+.icon {
+    /* outline: 1px solid lightskyblue; */
+    display: flex;
+    align-items: flex-end;
+    height: 125px;
+    margin-top: 50px;
+}
+i {
+    outline: 1px solid red;
+    justify-content: space-evenly;
+    text-align: center;
+    font-size: 60px;
+    color: lightskyblue;
+    width: 250px;
+    /* height: 200px; */
+    margin-top: 16px;
+}
+/* .button { */
+    /* transition: transform 1s; */
+    /* transform: translateY(-100%); */
+/* } */
+/* button.open-active {
+    transform: translateY(0);
+} */
 /* === === === MAIN CONTAINER === === === */
 .mainContainer {
     /* background-color: lightcyan; */
-    /* height: 610px; */
     height: 535px;
     max-width: 100%;
 }
@@ -85,13 +111,13 @@ html, body {
     justify-content: center;
     text-align: center; 
     /* flex: 1; */
-    width: 45%;
+    width: 52%;
 }
 .infoTitle {
     padding: 10px;
     background-color: rgba(255, 255, 255, 0.8);
     font-family: 'Mukta Malar', sans-serif;
-    font-size: 26px;
+    font-size: 22px;
     font-weight: bold;
     letter-spacing: 3px;
     word-spacing: 5px;
@@ -117,7 +143,7 @@ html, body {
     justify-content: center;
     /* justify-content: space-evenly; */
     /* height: 367px; */
-    height: 200px;
+    height: 260px;
     padding-bottom: 18px;
     background-color: rgba(255, 255, 255, 0.8);
 }
@@ -140,7 +166,10 @@ ul {
     padding: 0;
 }
 li {
+    font-family: 'Mukta Malar', sans-serif;
     padding-bottom: 20px;
+    /* letter-spacing: 3px; */
+    /* word-spacing: 5px; */
 }
 /* === === === MAP CONTAINER === === === */
 .mapContainer {
@@ -156,4 +185,9 @@ li {
     height: 450px; 
     width: 715px;
 }
-
+/* === === === ABOUT THE ONES WHO BUILT THIS THING === === === */
+.aboutContainer {
+    background-color: lightsalmon;
+    /* height: 610px; */
+    height: 535px;
+}
