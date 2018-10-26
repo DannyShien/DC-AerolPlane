@@ -88,17 +88,17 @@
 //             // const userTypeInput = "departure or arrival"  //make it into document.querySelector('[data-typeInfo]').value
 //             // filtering through each array seperately
 //             // debugger;
-//             // let departObj = departData.filter((departFinder) => {
-//             //     if (userFlightInput === departFinder.flight.iataNumber){
-//             //         return userFlightInput === departFinder.flight.iataNumber;
-//             //         }if ("departure" === departFinder.type){
-//             //             return true;
-//             //         }if (true && true){
-//             //             return userFlightInput === departFinder.flight.iataNumber;
-//             //         }else{
-//             //             console.log("not here for departure");
-//             //     }
-//             // });
+//             let departObj = departData.filter((departFinder) => { /////
+//                 if (userFlightInput === departFinder.flight.iataNumber){
+//                     return userFlightInput === departFinder.flight.iataNumber;
+//                     }if ("departure" === departFinder.type){
+//                         return true;
+//                     }if (true && true){
+//                         return userFlightInput === departFinder.flight.iataNumber;
+//                     }else{
+//                         console.log("not here for departure");
+//                 }
+//             });             
 //             let departObj = departData.filter((departFinder) => {
 //                 debugger;
 //                 if (userFlightInput === departFinder.flight.iataNumber){
@@ -504,3 +504,67 @@
 // // // Extracts from json to retrieve specific data 
 // // function extractFlightInfo(aircraft){ //aircraft holds all the info [4]
 // //     console.log(aircraft)
+
+
+///00000000000000000000Reset.. copied over code that we decided to not use for phase 1 but will need for phase 2..000000000000000000000
+// // Departure API
+// function getDepartureInfo(){
+//     console.log("Button is good for Departure");
+
+//     // Holds onto submitted info from form
+//     event.preventDefault();
+
+//     //Fetch API and convert to Json
+//     fetch("http://aviation-edge.com/v2/public/timetable?key=5f3420-01f81d&iataCode=ATL&type=departure")
+//     .then(r => r.json())
+//     //extracts departure
+//     .then((data) =>{
+//         // Connecting with <form>
+//         const userFlightInput = document.querySelector('[data-inputInfo]').value;
+//         let departureObj = data.filter((departureFinder) =>{
+//             return userFlightInput === departureFinder.flight.iataNumber;
+//         });
+//         // console.log(departureObj);
+//         return departureObj
+//     })
+//     //Displays departure
+//     .then((result) =>{
+//         console.log(result);
+
+//     })
+// };
+
+// //Arrival API
+// function getArrivalInfo(){
+//     console.log("Button is good for Arrival");
+
+//     // Holds onto submitted info from form
+//     event.preventDefault();
+
+//     //Fetch API and convert to Json
+//     fetch("http://aviation-edge.com/v2/public/timetable?key=5f3420-01f81d&iataCode=ATL&type=arrival")
+//     .then(r => r.json())
+//     //extracts departure
+//     .then((data) =>{
+//         // Connecting with <form>
+//         const userFlightInput = document.querySelector('[data-inputInfo]').value;
+//         let arrivalObj = data.filter((arrivalFinder) =>{
+//             return userFlightInput === arrivalFinder.flight.iataNumber;
+//         });
+//         // console.log(arrivalObj);
+//         return arrivalObj
+//     })
+//     //Displays departure
+//     .then((result) =>{
+//         console.log(result);
+
+//     })
+// };
+
+// function main(){
+//     starterElement.addEventListener('click', getDepartureInfo);
+//     starterElement.addEventListener('click', getArrivalInfo);
+// };
+// main();
+
+//end............ of phase 2../////////////
