@@ -1,7 +1,12 @@
 
+// FLIGHT
 const starterElement = document.querySelector('[data-flightStarter]');
 const flightInfoElement = document.querySelector('[data-flightInfo]');
 const flightInfoTwoElement = document.querySelector('[data-flightInfoTwo]');
+
+// MAP
+const mapElement = document.querySelector('[data-mapStarter]');
+const displayElement = document.querySelector('[data-display]');
 
 // Flight info API
 function getFlightInfo(){
@@ -64,23 +69,25 @@ function getFlightInfo(){
 
             //Speed
             const mph = finder.speed.horizontal;
-            const textFive = `Speed of Aircraft: ${mph}mph`;
+            const textFive = `Speed of Aircraft: ${mph}MPH`;
             let six = dataCollector.push(textFive);
 
             //Altitude
             const alt = finder.geography.altitude;
             const textSix = `Altitude of Aircraft: ${alt}ft`;
             let seven = dataCollector.push(textSix);
-        })
+        });
         // console.log(dataCollector);
         return dataCollector;
     })
+    
 
     // Appending each data to document
     .then((send) =>{
         // console.log(show);
 
         //Flight Number
+        debugger;
         const infoZero = document.createElement('li');
         infoZero.textContent = send[0];
         flightInfoElement.appendChild(infoZero);
@@ -116,11 +123,62 @@ function getFlightInfo(){
         flightInfoTwoElement.appendChild(infoSix);
 
         return send;
-    })
+    });
 };
 
+// Gathering coordinates to display on Google Map API
+function getCoordinatesForMap(){
+    console.log("Button is good for Map");
+
+    // Holds onto submitted info from form
+    event.preventDefault();
+
+    // Fetch Flight API and convert to Json to grab the coordinates
+    fetch("http://aviation-edge.com/v2/public/flights?key=5f3420-01f81d")
+    .then(r => r.json())
+    //getting coordinates
+    .then((data) =>{
+        // Connecting with <form>
+        const userFlightInput = document.querySelector('[data-inputInfo]').value;
+        let planeObj = data.filter((planeFinder) =>{
+            return userFlightInput === planeFinder.flight.iataNumber;
+        });
+        // console.log(planeObj);
+        return planeObj;
+    })
+    // Filtering through flight info to grab the coordinates
+    .then((result) =>{
+        const grid = [];
+        // Filters through flight into
+        const dataFinder = result.map((finder) =>{
+            //Coordinates
+            const lat = finder.geography.latitude;
+            const long = finder.geography.longitude;
+            const xx = grid.push(lat);
+            const yy = grid.push(long);
+        });
+        // console.log(grid);
+        return grid;
+    })
+    .then(initMap)
+};
+
+function initMap(gridlock){
+    // debugger;
+    // console.log(gridlock);
+const x = parseInt(gridlock[0]);
+const y = parseInt(gridlock[1]);
+
+// The location of ISS
+let iss = {lat: x, lng: y};
+// The map, centered at ISS
+let map = new google.maps.Map(displayElement, {zoom: 4, center: iss});
+// The marker, positioned at ISSe
+var marker = new google.maps.Marker({position: iss, map: map});
+};
 
 function main(){
     starterElement.addEventListener('click', getFlightInfo);
+    mapElement.addEventListener('click', getCoordinatesForMap);
 };
 main();
