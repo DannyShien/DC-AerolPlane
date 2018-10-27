@@ -426,17 +426,17 @@
 //             //             // console.log(flightNumbers);
             
 // ///=-=-=-=-=---=-=-==-=
-// // one function that will run all the other functions
-// // function function_one() {
-//     //     function_two(); // considering the next alert, I figured you wanted to call function_two first
-//     //     alert("The function called 'function_one' has been called.");
-//     // }
+// one function that will run all the other functions
+function function_one() {
+    function_two(); // considering the next alert, I figured you wanted to call function_two first
+    alert("The function called 'function_one' has been called.");
+}
     
-//     // function function_two() {
-//         //     alert("The function called 'function_two' has been called.");
-//         // }
+function function_two() {
+    alert("The function called 'function_two' has been called.");
+}
         
-//         // function_one();
+    function_one();
 
 // //0909090909090909090909090909090
 // // // // ~~~~~~~~~~~~~~~~~~~~~~~~~
