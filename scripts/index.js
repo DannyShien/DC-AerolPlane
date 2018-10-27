@@ -121,7 +121,16 @@ function getFlightInfo(){
 
 //  Find weather API
 function getWeatherInfo () {
-    console.log
+    console.log('Getting weather');
+    fetch('api.openweathermap.org/data/2.5/weather?q=Atlanta&APPID=`${weateher_Key}`')
+    .then(r => r.json())
+    
+    .then(getMainTemp)
+        const destTemp = document.querySelector('[data-mainWeather]');
+        let temp = obj.main.temp;
+        let degree = ((temp - 273.15) * 9/5 + 32).toFixed(1);
+    
+    
 }
 
 
