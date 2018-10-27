@@ -119,6 +119,11 @@ function getFlightInfo(){
     })
 };
 
+//  Find weather API
+function getWeatherInfo () {
+    console.log
+}
+
 
 function main(){
     starterElement.addEventListener('click', getFlightInfo);
