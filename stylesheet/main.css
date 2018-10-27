@@ -73,6 +73,17 @@ i {
     width: 250px;
     /* height: 200px; */
     margin-top: 16px;
+    position: relative;
+    bottom: -100%;
+    animation:  10s vertical infinite;
+}
+@keyframes move {
+    from {
+        bottom: -100px;
+    }
+    to {
+        top: 40%;
+    }
 }
 /* .button { */
     /* transition: transform 1s; */
