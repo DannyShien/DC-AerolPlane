@@ -23,8 +23,8 @@ html, body {
 /* === === === HOME CONTAINER === === === */
 .homeContainer{
     /* background-color: lightskyblue; */
-    /* height: 610px; */
-    height: 535px;
+    height: 610px;
+    /* height: 535px; */
     display: flex;
     flex-direction: column;
 }
@@ -65,11 +65,12 @@ html, body {
     margin-top: 50px;
 }
 i {
-    outline: 1px solid red;
+    /* outline: 1px solid red; */
     justify-content: space-evenly;
     text-align: center;
-    font-size: 60px;
-    color: lightskyblue;
+    font-size: 38px;
+    /* color: rgba(95, 132, 185, 0.77); */
+    color: white;
     width: 250px;
     /* height: 200px; */
     margin-top: 16px;
@@ -95,7 +96,8 @@ i {
 /* === === === MAIN CONTAINER === === === */
 .mainContainer {
     /* background-color: lightcyan; */
-    height: 535px;
+    height: 610px;
+    /* height: 535px; */
     max-width: 100%;
 }
 .imageTwo {
@@ -109,11 +111,12 @@ i {
 .mainColumn {
     display: flex;
     justify-content: space-between;
-    height: 400px;
+    height: 317px;
     width: 90%;
     padding-top: 15px;
     padding-bottom: 15px;
 }
+/* === === === INFO - COLUMN ONE/TWO === === === */
 .infoContainer {
     /* background-color: lightgoldenrodyellow; */
     /* background-color: rgba(0,0,0, 0.4); */
@@ -126,29 +129,14 @@ i {
 }
 .infoTitle {
     padding: 10px;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: white;
+    /* background-color: rgba(255, 255, 255, 0.8); */
     font-family: 'Mukta Malar', sans-serif;
     font-size: 22px;
     font-weight: bold;
     letter-spacing: 3px;
     word-spacing: 5px;
 }
-.weatherContainer { 
-    /* background-color: lightcoral; */
-    background-color: rgba(255, 255, 255, 0.8);
-    text-align: center;
-    /* flex: 1; */
-    width: 45%;
-}
-.weatherTitle{
-    padding: 15px;
-    font-family: 'Mukta Malar', sans-serif;
-    /* font-size: 26px;
-    font-weight: bold;
-    letter-spacing: 3px;
-    word-spacing: 5px; */
-}
-/* === === === INFO - COLUMN ONE/TWO === === === */
 .infoColumn {
     display: flex;
     justify-content: center;
@@ -159,14 +147,14 @@ i {
     background-color: rgba(255, 255, 255, 0.8);
 }
 .columnOne {
-    /* background-color: white; */
+    background-color: white;
     /* background-color: rgba(255, 255, 255, 0.3); */
     /* padding: 15px; */
     flex: 1;
     margin: 0 2px 0 4px;
 }
 .columnTwo {
-    /* background-color: white; */
+    background-color: white;
     /* background-color: rgba(255, 255, 255, 0.3); */
     /* padding: 15px; */
     flex: 1;
@@ -182,23 +170,69 @@ li {
     /* letter-spacing: 3px; */
     /* word-spacing: 5px; */
 }
+/* === === === WEATHER COLUMN === === === */
+.weatherContainer { 
+    background-color: lightcoral;
+    /* background-color: rgba(255, 255, 255, 0.8); */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    /* flex: 1; */
+    width: 45%;
+}
+.weatherTitle{
+    padding: 10px;
+    background-color: white;
+    font-family: 'Mukta Malar', sans-serif;
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    word-spacing: 5px;
+}
+.weatherColumn {
+    height: 260px;
+    justify-content: space-between;
+}
+.minWeather {
+    background-color: lightcyan;
+    flex: 1;
+    height: 100px;
+    /* padding: 0 10px; */
+    margin: 0 10px;
+}
+.mainWeather {
+    background-color: lightgoldenrodyellow;
+    /* justify-content: flex-end; */
+    height: 140px;
+    flex: 2;
+}
+.maxWeather {
+    background-color: lightcyan; 
+    height: 100px;
+    flex: 1;
+    /* padding: 0 10px; */
+    margin: 0 10px;
+}
 /* === === === MAP CONTAINER === === === */
 .mapContainer {
-    background-color: lightgray;
-    /* display: flex; */
-    /* justify-content: center; */
-    /* align-items: center; */
-    /* height: 610px; */
-    height: 535px;
+    /* background-color: lightgray; */
+    background-image: url(../images/clouds.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 610px;
+    /* height: 535px; */
 }
 .map {
-    background-color: white;
+    /* background-color: rgba(255, 255, 255, 0); */
     height: 450px; 
     width: 715px;
 }
 /* === === === ABOUT THE ONES WHO BUILT THIS THING === === === */
 .aboutContainer {
     background-color: lightsalmon;
-    /* height: 610px; */
-    height: 535px;
+    height: 610px;
+    /* height: 535px; */
 }
