@@ -4,6 +4,7 @@ const flightInfoElement = document.querySelector('[data-flightInfo]');
 const flightInfoTwoElement = document.querySelector('[data-flightInfoTwo]');
 const weatherElement = document.querySelector('[data-weatherStarter]');
 
+
 // Flight info API
 function getFlightInfo(){
     console.log("Button is good for Plane");
@@ -126,22 +127,64 @@ function getWeatherInfo () {
     fetch(`http://api.openweathermap.org/data/2.5/weather?q=Atlanta&APPID=dee07fae47d614b4f9cb0a8cd0a2cfeb`)
     .then(r => r.json())
     
-    .then(main => {
-        let temp = main.main.temp;
-        let degree = ((temp - 273.15) * 9/5 + 32).toFixed(1);
+    .then(temp => {
+
+        let mainTemp = temp.main.temp;
+        let mainDeg = ((mainTemp - 273.15) * 9/5 + 32).toFixed(1);
+        let mainText = `${mainDeg} °F`;
         console.log('Returned temp');
-        return degree;
+
+//stan 
+        // let mainTemp = temp.main.temp;
+        // let mainDeg = ((mainTemp - 273.15) * 9/5 + 32).toFixed(1);
+        // console.log('Returned temp');
+        
+        let minTemp  = temp.main.temp_min;
+        let minDeg = ((minTemp - 273.15) * 9/5 + 32).toFixed(1); 
+        console.log('Returned min temp');
+
+        let maxTemp = temp.main.temp_max;
+        let maxDeg = ((maxTemp - 273.15) * 9/5 + 32).toFixed(1);
+        console.log('Returned max temp');
+
+        let temperatures = []; 
+        temperatures.push(mainText);
+        temperatures.push(minDeg);
+        temperatures.push(maxDeg);
+        
+
+        return temperatures;
     }) 
 
-    .then(showMain => {
-        const desTemp = document.querySelector('[data-mainWeather]');
-        const mainTemp = document.createElement('div');
-        mainTemp.textContent = `${showMain} °F`;
-        desTemp.appendChild(mainTemp);
+    .then(larry => {
+        debugger;
+        let mainTemp = document.createElement('li');
+        mainTemp.textContent = larry[0];
+        // console.log(mainTemp);
+        getTemp.appendChild(mainTemp);
+        let getTemp = document.querySelector('[data-mainWeather]');
+//stan
+        // const getTemp = document.querySelector('[data-mainWeather]');
+        // const mainTemp = document.createElement('div');
+        // mainTemp.textContent = `${larry[0]} °F`;
+        // console.log(mainTemp);
+
+        // const getMin = document.querySelector('[data-minWeather]');
+        // const minTemp = document.createElement('div');
+        // minTemp.textContent = `${larry[1]} °F`;
+        // console.log(minTemp);
+
+        // const getMax = document.querySelector('[data-maxweather]');
+        // const maxTemp = document.createElement('div');
+        // maxTemp.textContent = `${larry[2]} °F`;
+        // console.log(maxTemp);
+
+        // debugger;
+        // getMin.appendChild(minTemp);
+        // getMax.appendChild(maxTemp);
     })
-}
 
-
+};
 
 
 
