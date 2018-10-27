@@ -3,6 +3,8 @@
 const starterElement = document.querySelector('[data-flightStarter]');
 const flightInfoElement = document.querySelector('[data-flightInfo]');
 const flightInfoTwoElement = document.querySelector('[data-flightInfoTwo]');
+const weatherElement = document.querySelector('[data-weatherStarter]');
+
 
 // MAP
 const mapElement = document.querySelector('[data-mapStarter]');
@@ -69,12 +71,12 @@ function getFlightInfo(){
 
             //Speed
             const mph = finder.speed.horizontal;
-            const textFive = `Speed of Aircraft: ${mph}MPH`;
+            const textFive = `Speed of Aircraft: ${mph} MPH`;
             let six = dataCollector.push(textFive);
 
             //Altitude
             const alt = finder.geography.altitude;
-            const textSix = `Altitude of Aircraft: ${alt}ft`;
+            const textSix = `Altitude of Aircraft: ${alt} ft`;
             let seven = dataCollector.push(textSix);
         });
         // console.log(dataCollector);
@@ -163,22 +165,95 @@ function getCoordinatesForMap(){
     .then(initMap)
 };
 
+
 function initMap(gridlock){
     // debugger;
     // console.log(gridlock);
 const x = parseInt(gridlock[0]);
 const y = parseInt(gridlock[1]);
 
-// The location of ISS
-let iss = {lat: x, lng: y};
-// The map, centered at ISS
-let map = new google.maps.Map(displayElement, {zoom: 4, center: iss});
-// The marker, positioned at ISSe
-var marker = new google.maps.Marker({position: iss, map: map});
+// The location of place
+let plane = {lat: x, lng: y};
+// The map, centered at plane
+let map = new google.maps.Map(displayElement, {zoom: 4, center: plane});
+// The marker, positioned at place
+var marker = new google.maps.Marker({position: plane, map: map});
 };
+
+//  Find weather API
+function getWeatherInfo () {
+    console.log('Getting weather');
+    fetch(`http://api.openweathermap.org/data/2.5/weather?q=Atlanta&APPID=dee07fae47d614b4f9cb0a8cd0a2cfeb`)
+    .then(r => r.json())
+    
+    .then(temp => {
+
+        let mainTemp = temp.main.temp;
+        let mainDeg = ((mainTemp - 273.15) * 9/5 + 32).toFixed(1);
+        let mainText = `${mainDeg} °F`;
+        console.log('Returned temp');
+
+//stan 
+        // let mainTemp = temp.main.temp;
+        // let mainDeg = ((mainTemp - 273.15) * 9/5 + 32).toFixed(1);
+        // console.log('Returned temp');
+        
+        let minTemp  = temp.main.temp_min;
+        let minDeg = ((minTemp - 273.15) * 9/5 + 32).toFixed(1); 
+        console.log('Returned min temp');
+
+        let maxTemp = temp.main.temp_max;
+        let maxDeg = ((maxTemp - 273.15) * 9/5 + 32).toFixed(1);
+        console.log('Returned max temp');
+
+        let temperatures = []; 
+        temperatures.push(mainText);
+        temperatures.push(minDeg);
+        temperatures.push(maxDeg);
+        
+
+        return temperatures;
+    }) 
+
+    .then(larry => {
+        debugger;
+        let mainTemp = document.createElement('li');
+        mainTemp.textContent = larry[0];
+        // console.log(mainTemp);
+        getTemp.appendChild(mainTemp);
+        let getTemp = document.querySelector('[data-mainWeather]');
+//stan
+        // const getTemp = document.querySelector('[data-mainWeather]');
+        // const mainTemp = document.createElement('div');
+        // mainTemp.textContent = `${larry[0]} °F`;
+        // console.log(mainTemp);
+
+        // const getMin = document.querySelector('[data-minWeather]');
+        // const minTemp = document.createElement('div');
+        // minTemp.textContent = `${larry[1]} °F`;
+        // console.log(minTemp);
+
+        // const getMax = document.querySelector('[data-maxweather]');
+        // const maxTemp = document.createElement('div');
+        // maxTemp.textContent = `${larry[2]} °F`;
+        // console.log(maxTemp);
+
+        // debugger;
+        // getMin.appendChild(minTemp);
+        // getMax.appendChild(maxTemp);
+    })
+
+};
+
+
+
+
+
 
 function main(){
     starterElement.addEventListener('click', getFlightInfo);
+    weatherElement.addEventListener('click', getWeatherInfo);
     mapElement.addEventListener('click', getCoordinatesForMap);
 };
+
 main();
