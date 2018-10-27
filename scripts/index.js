@@ -2,6 +2,7 @@
 const starterElement = document.querySelector('[data-flightStarter]');
 const flightInfoElement = document.querySelector('[data-flightInfo]');
 const flightInfoTwoElement = document.querySelector('[data-flightInfoTwo]');
+const weatherElement = document.querySelector('[data-weatherStarter]');
 
 // Flight info API
 function getFlightInfo(){
@@ -122,19 +123,34 @@ function getFlightInfo(){
 //  Find weather API
 function getWeatherInfo () {
     console.log('Getting weather');
-    fetch('api.openweathermap.org/data/2.5/weather?q=Atlanta&APPID=`${weateher_Key}`')
+    fetch(`http://api.openweathermap.org/data/2.5/weather?q=Atlanta&APPID=dee07fae47d614b4f9cb0a8cd0a2cfeb`)
     .then(r => r.json())
     
-    .then(getMainTemp)
-        const destTemp = document.querySelector('[data-mainWeather]');
-        let temp = obj.main.temp;
+    .then(main => {
+        let temp = main.main.temp;
         let degree = ((temp - 273.15) * 9/5 + 32).toFixed(1);
-    
-    
+        console.log('Returned temp');
+        return degree;
+    }) 
+
+    .then(showMain => {
+        const desTemp = document.querySelector('[data-mainWeather]');
+        const mainTemp = document.createElement('div');
+        mainTemp.textContent = `${showMain} °F`;
+        desTemp.appendChild(mainTemp);
+    })
 }
+
+
+
+
+
+
 
 
 function main(){
     starterElement.addEventListener('click', getFlightInfo);
+    weatherElement.addEventListener('click', getWeatherInfo);
 };
+
 main();
