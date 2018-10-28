@@ -7,6 +7,8 @@ const weatherElement = document.querySelector('[data-weatherStarter]');
 // MAP
 const mapElement = document.querySelector('[data-mapStarter]');
 
+//testing airport code to city to weather
+const testElement = document.querySelector('[data-testing]');
 
 // Flight info API
 function getFlightInfo(){
@@ -178,6 +180,85 @@ var marker = new google.maps.Marker({position: plane, map: map});
 };
 
 
+
+
+// flight info to airport to city to weather
+function testing(){
+    console.log("testing testing");
+    event.preventDefault();
+
+    // Fetch API and convert to Json
+    fetch("http://aviation-edge.com/v2/public/flights?key=5f3420-01f81d")
+    .then(r => r.json())
+    // Extracts flight info
+    .then((data) =>{
+        // Connecting with <form>
+        const userFlightInput = document.querySelector('[data-inputInfo]').value;
+        let planeObj = data.filter((planeFinder) =>{
+            return userFlightInput === planeFinder.flight.iataNumber;
+        });
+        // console.log(planeObj);
+        return planeObj;
+    })
+    // Filtering through flight info to grab airport IATACODE
+    .then((result) =>{
+        // Filters through flight into
+        const dataFinder = result.filter((finder) =>{
+            // Arrival city airport code
+            const airportIataCode = finder.arrival.iataCode;
+            return airportIataCode;
+        });
+        // debugger;
+        return dataFinder;
+    })
+    // Using airport IATACODE to compare it to airport API to grab airport info
+    .then((compare) => {
+        // console.log(compare);
+        console.log(compare)
+        return compare
+    })
+    .then((get) => {
+        fetch("https://aviation-edge.com/v2/public/airportDatabase?key=5f3420-01f81d");
+        return get;
+    })
+    .then((s) => {
+        s.json()
+        return s;
+    })   
+    .then((airportCode) =>{
+        // debugger;
+        const levelOne = airportCode.filter((cityFinder) =>{
+            if (compare.arrival.iataCode === (cityFinder.codeIataAirport)){
+                // console.log(cityFinder.codeIataCity);                    
+                return cityFinder.codeIataCity;
+            };
+        // console.log(levelOne);
+        return levelOne;
+        });
+    })
+    .then((cityCode) =>{
+       console.log(cityCode);
+    })
+
+
+
+    // fetch("https://aviation-edge.com/v2/public/cityDatabase?key=5f3420-01f81d")
+    // .then(r => r.json())
+    // .then((data) =>{
+    //     const userFlightInput = document.querySelector('[data-inputInfo]').value;
+    //     let planeObj = data.filter((planeFinder) =>{
+    //         return userFlightInput === planeFinder.flight.iataNumber;
+    //     });
+    //     return planeObj;
+    // })
+    // .then((airportCode) =>{
+    //     const codeFinder = airportCode.map((finder) =>{
+    //         if ((finder.arrival.iataCode) === ())
+    //     })
+    // })
+};
+
+
 //  Find weather API
 function getWeatherInfo () {
     console.log('Getting weather');
@@ -238,6 +319,8 @@ function main(){
     starterElement.addEventListener('click', getFlightInfo);
     mapElement.addEventListener('click', getCoordinatesForMap);
     weatherElement.addEventListener('click', getWeatherInfo);
+
+    testElement.addEventListener('click', testing);
 };
 
 main();
