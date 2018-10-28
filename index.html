@@ -12,7 +12,7 @@
 </head>
 <body>
     <!-- === === === HOME PAGE === === === -->
-    <section class="homeContainer image center">
+    <section class="homeContainer center">
         <div class="content">
             <h1 class="title">Aerol Plane</h1>
             <form class="form" data-form>
@@ -22,7 +22,7 @@
                 <button class="button" type="submit" data-flightStarter data-weatherStarter data-mapStarter data-testing>Find flight</button>  
             </form>
         </div>
-        <div class="icon">
+        <div class="icon animation">
             <a href="#flightInfo"><i class="fas fa-plane"></i></a>
             <a href="#mapInfo"><i class="fas fa-globe-asia"></i></a>
             <a href="#aboutUs"><i class="fa fa-bath"></i></a>
@@ -32,7 +32,7 @@
     <section class="divider"></section>
 
     <!-- === === === FLIGHT INFORMATION === === === -->
-    <section class="mainContainer imageTwo center" id="flightInfo">
+    <section class="mainContainer center" id="flightInfo">
         <div class="mainColumn">
             <div class="infoContainer">
                 <div class="infoTitle center">FLIGHT INFO</div>
@@ -49,8 +49,17 @@
                     </div>
                 </div>
             </div>
+
             <div class="weatherContainer" data-weatherInfo data-testing>
-                <div class="weatherTitle">WEATHER INFO</div>
+                <div class="weatherTitle center">WEATHER INFO</div>
+                <div class="weatherColumn center">
+                    <h2 class="cityDisplay"><font>Atlanta</font></h2>
+                    <div class="tempDisplay">
+                        <div class="minWeather" data-minWeather>45°</div>
+                        <div class="mainWeather" data-mainWeather>65°</div>
+                        <div class="maxWeather" data-maxWeather>68°</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -66,7 +75,7 @@
 
     <!-- === === === ABOUT THE UNTALENTED BUILDERS === === === -->
     <section class="aboutContainer" id="aboutUs">
-
+        
     </section>
 
     <!-- <script src="scripts/config.js"></script> -->
