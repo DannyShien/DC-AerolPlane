@@ -1,14 +1,14 @@
-
 // FLIGHT
 const starterElement = document.querySelector('[data-flightStarter]');
-const flightInfoElement = document.querySelector('[data-flightInfo]');
-const flightInfoTwoElement = document.querySelector('[data-flightInfoTwo]');
-const weatherElement = document.querySelector('[data-weatherStarter]');
 
+// WEATHER
+const weatherElement = document.querySelector('[data-weatherStarter]');
 
 // MAP
 const mapElement = document.querySelector('[data-mapStarter]');
-const displayElement = document.querySelector('[data-display]');
+
+//testing airport code to city to weather
+const testElement = document.querySelector('[data-testing]');
 
 // Flight info API
 function getFlightInfo(){
@@ -34,9 +34,6 @@ function getFlightInfo(){
 
     // Filtering through flight info and putting it into array
     .then((result) =>{
-        // console.log(result);
-        // console.log(result[0].status);
-
         // compiling collected data
         let dataCollector = [];
 
@@ -79,14 +76,14 @@ function getFlightInfo(){
             const textSix = `Altitude of Aircraft: ${alt} ft`;
             let seven = dataCollector.push(textSix);
         });
-        // console.log(dataCollector);
         return dataCollector;
     })
     
-
     // Appending each data to document
     .then((send) =>{
-        // console.log(show);
+
+        const flightInfoElement = document.querySelector('[data-flightInfo]');
+        const flightInfoTwoElement = document.querySelector('[data-flightInfoTwo]');
 
         //Flight Number
         const infoZero = document.createElement('li');
@@ -124,10 +121,11 @@ function getFlightInfo(){
         flightInfoTwoElement.appendChild(infoSix);
 
         return send;
-    });
+    })
 };
 
-// Gathering coordinates to display on Google Map API
+
+// Gathering coordinates info to display on Google Map API
 function getCoordinatesForMap(){
     console.log("Button is good for Map");
 
@@ -143,7 +141,7 @@ function getCoordinatesForMap(){
         const userFlightInput = document.querySelector('[data-inputInfo]').value;
         let planeObj = data.filter((planeFinder) =>{
             return userFlightInput === planeFinder.flight.iataNumber;
-        });
+        })
         // console.log(planeObj);
         return planeObj;
     })
@@ -164,19 +162,101 @@ function getCoordinatesForMap(){
     .then(initMap)
 };
 
-
+// Displaying the map
 function initMap(gridlock){
     // console.log(gridlock);
 const x = parseInt(gridlock[0]);
 const y = parseInt(gridlock[1]);
 
+const displayElement = document.querySelector('[data-display]');
+
 // The location of place
 let plane = {lat: x, lng: y};
 // The map, centered at plane
-let map = new google.maps.Map(displayElement, {zoom: 4, center: plane});
+let map = new google.maps.Map(displayElement, {zoom: 6, center: plane});
 // The marker, positioned at place
 var marker = new google.maps.Marker({position: plane, map: map});
 };
+
+
+
+
+// flight info to airport to city to weather
+function testing(){
+    console.log("testing testing");
+    event.preventDefault();
+
+    // Fetch API and convert to Json
+    fetch("http://aviation-edge.com/v2/public/flights?key=5f3420-01f81d")
+    .then(r => r.json())
+    // Extracts flight info
+    .then((data) =>{
+        // Connecting with <form>
+        const userFlightInput = document.querySelector('[data-inputInfo]').value;
+        let planeObj = data.filter((planeFinder) =>{
+            return userFlightInput === planeFinder.flight.iataNumber;
+        });
+        // console.log(planeObj);
+        return planeObj;
+    })
+    // Filtering through flight info to grab airport IATACODE
+    .then((result) =>{
+        // Filters through flight into
+        const dataFinder = result.filter((finder) =>{
+            // Arrival city airport code
+            const airportIataCode = finder.arrival.iataCode;
+            return airportIataCode;
+        });
+        // debugger;
+        return dataFinder;
+    })
+    // Using airport IATACODE to compare it to airport API to grab airport info
+    .then((compare) => {
+        // console.log(compare);
+        console.log(compare)
+        return compare
+    })
+    .then((get) => {
+        fetch("https://aviation-edge.com/v2/public/airportDatabase?key=5f3420-01f81d");
+        return get;
+    })
+    .then((s) => {
+        s.json()
+        return s;
+    })   
+    .then((airportCode) =>{
+        // debugger;
+        const levelOne = airportCode.filter((cityFinder) =>{
+            if (compare.arrival.iataCode === (cityFinder.codeIataAirport)){
+                // console.log(cityFinder.codeIataCity);                    
+                return cityFinder.codeIataCity;
+            };
+        // console.log(levelOne);
+        return levelOne;
+        });
+    })
+    .then((cityCode) =>{
+       console.log(cityCode);
+    })
+
+
+
+    // fetch("https://aviation-edge.com/v2/public/cityDatabase?key=5f3420-01f81d")
+    // .then(r => r.json())
+    // .then((data) =>{
+    //     const userFlightInput = document.querySelector('[data-inputInfo]').value;
+    //     let planeObj = data.filter((planeFinder) =>{
+    //         return userFlightInput === planeFinder.flight.iataNumber;
+    //     });
+    //     return planeObj;
+    // })
+    // .then((airportCode) =>{
+    //     const codeFinder = airportCode.map((finder) =>{
+    //         if ((finder.arrival.iataCode) === ())
+    //     })
+    // })
+};
+
 
 //  Find weather API
 function getWeatherInfo () {
@@ -185,27 +265,20 @@ function getWeatherInfo () {
     .then(r => r.json())
     
     .then(temp => {
-
         let mainTemp = temp.main.temp;
         let mainDeg = ((mainTemp - 273.15) * 9/5 + 32).toFixed(1);
-        let mainText = `${mainDeg} °F`;
-        console.log('Returned temp');
-
-//stan 
-        // let mainTemp = temp.main.temp;
-        // let mainDeg = ((mainTemp - 273.15) * 9/5 + 32).toFixed(1);
         // console.log('Returned temp');
         
         let minTemp  = temp.main.temp_min;
         let minDeg = ((minTemp - 273.15) * 9/5 + 32).toFixed(1); 
-        console.log('Returned min temp');
+        // console.log('Returned min temp');
 
         let maxTemp = temp.main.temp_max;
         let maxDeg = ((maxTemp - 273.15) * 9/5 + 32).toFixed(1);
-        console.log('Returned max temp');
+        // console.log('Returned max temp');
 
         let temperatures = []; 
-        temperatures.push(mainText);
+        temperatures.push(mainDeg);
         temperatures.push(minDeg);
         temperatures.push(maxDeg);
         
@@ -214,31 +287,25 @@ function getWeatherInfo () {
     }) 
 
     .then(larry => {
-        let mainTemp = document.createElement('li');
-        mainTemp.textContent = larry[0];
-        // console.log(mainTemp);
+        const getTemp = document.querySelector('[data-weatherInfo]');
+        const mainTemp = document.createElement('li');
+        mainTemp.textContent = `${larry[0]} °F`;
         getTemp.appendChild(mainTemp);
-        let getTemp = document.querySelector('[data-mainWeather]');
-//stan
-        // const getTemp = document.querySelector('[data-mainWeather]');
-        // const mainTemp = document.createElement('div');
-        // mainTemp.textContent = `${larry[0]} °F`;
         // console.log(mainTemp);
 
-        // const getMin = document.querySelector('[data-minWeather]');
-        // const minTemp = document.createElement('div');
-        // minTemp.textContent = `${larry[1]} °F`;
+        const getMin = document.querySelector('[data-weatherInfo]');
+        const minTemp = document.createElement('li');
+        minTemp.textContent = `${larry[1]} °F`;
+        getMin.appendChild(minTemp);
         // console.log(minTemp);
 
-        // const getMax = document.querySelector('[data-maxweather]');
-        // const maxTemp = document.createElement('div');
-        // maxTemp.textContent = `${larry[2]} °F`;
+        const getMax = document.querySelector('[data-weatherInfo]');
+        const maxTemp = document.createElement('li');
+        maxTemp.textContent = `${larry[2]} °F`;
+        getMax.appendChild(maxTemp);
         // console.log(maxTemp);
-
-        // getMin.appendChild(minTemp);
-        // getMax.appendChild(maxTemp);
     })
-
+    return
 };
 
 
@@ -248,8 +315,10 @@ function getWeatherInfo () {
 
 function main(){
     starterElement.addEventListener('click', getFlightInfo);
-    weatherElement.addEventListener('click', getWeatherInfo);
     mapElement.addEventListener('click', getCoordinatesForMap);
+    weatherElement.addEventListener('click', getWeatherInfo);
+
+    testElement.addEventListener('click', testing);
 };
 
 main();
