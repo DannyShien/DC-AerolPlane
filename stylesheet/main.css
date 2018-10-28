@@ -1,3 +1,4 @@
+/*  === === === GLOBAL STYLING === === === */
 html {
     box-sizing: border-bo; 
 }
@@ -20,6 +21,20 @@ html, body {
     /* background-image: linear-gradient(white, white, lightgray); */
     height: 100px;
 }
+/* === === === ANIMATION === === === */
+@keyframes zoom {
+    0% /* from */ {
+        transform: scale(1);
+    
+    }
+    70% {
+        transform: scale(2)
+    }
+
+    100% /* to */ {
+        transform: scale(1.5);
+    }
+}
 /* === === === HOME CONTAINER === === === */
 .homeContainer{
     /* background-color: lightskyblue; */
@@ -27,8 +42,7 @@ html, body {
     /* height: 535px; */
     display: flex;
     flex-direction: column;
-}
-.image {
+
     /* background-image: url(../images/airplane.jpg); */
     background-image: url(../images/airplane4.jpg);
     background-attachment: fixed;
@@ -47,7 +61,7 @@ html, body {
     /* font-family: 'Permanent Marker', cursive; */
     /* font-family: 'Cabin Sketch', cursive; */
     /* font-family: 'Baloo Bhaina', cursive; */
-    font-size: 50px;
+    font-size: 80px;
     margin: 0 0 10px;
 }
 .form {
@@ -60,48 +74,31 @@ html, body {
 .icon {
     /* outline: 1px solid lightskyblue; */
     display: flex;
+    justify-content: space-between;
     align-items: flex-end;
-    height: 125px;
+    height: 50px;
     margin-top: 50px;
+    width: 700px;
 }
 i {
-    /* outline: 1px solid red; */
-    justify-content: space-evenly;
+    outline: 1px solid red;
+    display: flex;
     text-align: center;
     font-size: 38px;
     /* color: rgba(95, 132, 185, 0.77); */
     color: white;
-    width: 250px;
-    /* height: 200px; */
-    margin-top: 16px;
-    position: relative;
-    bottom: -100%;
-    animation:  10s vertical infinite;
+    width: 40px;
+
 }
-@keyframes move {
-    from {
-        bottom: -100px;
-    }
-    to {
-        top: 40%;
-    }
-}
-/* .button { */
-    /* transition: transform 1s; */
-    /* transform: translateY(-100%); */
-/* } */
-/* button.open-active {
-    transform: translateY(0);
-} */
 /* === === === MAIN CONTAINER === === === */
 .mainContainer {
     /* background-color: lightcyan; */
     height: 610px;
     /* height: 535px; */
     max-width: 100%;
-}
-.imageTwo {
+
     background-image:  url(../images/airplane2.jpg);
+    /* background-image:  url(../images/airplane.jpg); */
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -115,27 +112,33 @@ i {
     width: 90%;
     padding-top: 15px;
     padding-bottom: 15px;
+    border-radius: 25%;
 }
 /* === === === INFO - COLUMN ONE/TWO === === === */
 .infoContainer {
     /* background-color: lightgoldenrodyellow; */
-    /* background-color: rgba(0,0,0, 0.4); */
+    background-color: rgba(255, 255, 255, 0.8);
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center; 
     /* flex: 1; */
     width: 52%;
+    border-radius: 25px;
+    box-shadow: 5px 5px 15px gray;
+    /* box-shadow: 5px 5px 15px whitesmoke; */
 }
 .infoTitle {
     padding: 10px;
-    background-color: white;
+    /* background-color: white; */
     /* background-color: rgba(255, 255, 255, 0.8); */
     font-family: 'Mukta Malar', sans-serif;
     font-size: 22px;
     font-weight: bold;
     letter-spacing: 3px;
     word-spacing: 5px;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
 }
 .infoColumn {
     display: flex;
@@ -144,17 +147,17 @@ i {
     /* height: 367px; */
     height: 260px;
     padding-bottom: 18px;
-    background-color: rgba(255, 255, 255, 0.8);
+    /* background-color: rgba(255, 255, 255, 0.8); */
 }
 .columnOne {
-    background-color: white;
+    /* background-color: white; */
     /* background-color: rgba(255, 255, 255, 0.3); */
     /* padding: 15px; */
     flex: 1;
     margin: 0 2px 0 4px;
 }
 .columnTwo {
-    background-color: white;
+    /* background-color: white; */
     /* background-color: rgba(255, 255, 255, 0.3); */
     /* padding: 15px; */
     flex: 1;
@@ -172,47 +175,76 @@ li {
 }
 /* === === === WEATHER COLUMN === === === */
 .weatherContainer { 
-    background-color: lightcoral;
-    /* background-color: rgba(255, 255, 255, 0.8); */
+    /* background-color: lightcoral; */
+    background-color: rgba(255, 255, 255, 0.8);
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
     /* flex: 1; */
     width: 45%;
+    border-radius: 25px;
+    box-shadow: 5px 5px 15px grey;
 }
 .weatherTitle{
     padding: 10px;
-    background-color: white;
+    /* background-color: white; */
+    background-color: rgba(255, 255, 255, 0);
     font-family: 'Mukta Malar', sans-serif;
     font-size: 22px;
     font-weight: bold;
     letter-spacing: 3px;
     word-spacing: 5px;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
 }
+/* .font {
+    font-family: 'Mukta Malar', sans-serif;
+} */
 .weatherColumn {
+    /* display: flex; */
+    flex-direction: column;
+    /* align-content: center; */
+}
+.cityDisplay {
+    /* background-color: rgba(255, 255, 255, 0.3); */
+    display: flex;
+    font-size: 30px;
+    text-shadow: 2px 2px 4px #7ecdf1;
+}
+.tempDisplay {
     height: 260px;
+    display: flex;  
     justify-content: space-between;
+    padding-top: 40px;
+    /* font-family: 'Baloo Bhaina', cursive; */
+    font-family: 'Cabin Sketch', cursive;
+    color: skyblue;
+    text-shadow: 2px 2px 4px #000000;
 }
 .minWeather {
-    background-color: lightcyan;
+    /* background-color: rgba(255, 255, 255, 0.3); */
     flex: 1;
-    height: 100px;
+    height: 50px;
     /* padding: 0 10px; */
+    justify-content: flex-start;
     margin: 0 10px;
+    font-size: 25px;
 }
 .mainWeather {
-    background-color: lightgoldenrodyellow;
-    /* justify-content: flex-end; */
-    height: 140px;
+    /* background-color: rgba(255, 255, 255, 0.3); */
+    /* justify-content: flex-end;  */
+    height: 100px;
     flex: 2;
+    font-size: 80px;
 }
 .maxWeather {
-    background-color: lightcyan; 
-    height: 100px;
+    /* background-color: rgba(255, 255, 255, 0.3); */
+    height: 50px;
     flex: 1;
     /* padding: 0 10px; */
     margin: 0 10px;
+    font-size: 25px;
 }
 /* === === === MAP CONTAINER === === === */
 .mapContainer {
@@ -226,7 +258,7 @@ li {
     /* height: 535px; */
 }
 .map {
-    /* background-color: rgba(255, 255, 255, 0); */
+    background-color: rgba(179, 117, 117);
     height: 450px; 
     width: 715px;
 }
@@ -235,4 +267,101 @@ li {
     background-color: lightsalmon;
     height: 610px;
     /* height: 535px; */
+
+    background-image:  url(../images/airplane2.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
+
+/* === === === MEDIA QUERY === === === */
+
+@media screen and (max-width: 375px) {
+    /* html, body {
+        max-width: 365px;
+    } */
+    .homeContainer {
+        height: 613px;
+        /* width: 377px; */
+    }
+    .content {
+        display: flex;
+    }
+    .title {
+        font-size: 45px;
+    }
+    .form {
+        font-size: 12px;
+    }
+    button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 9;
+        margin-left: 87px;
+        margin-top: 10px;
+    }
+    .icon {
+        width: 215px;
+    }
+    i {
+        font-size: 24px;
+    }
+
+    .mainContainer {
+        height: 613px;
+        width: 377px;
+    }
+    .mainColumn {
+        display: flex;
+        flex-direction: column;
+        height: 612px;
+        padding: 0;
+    }
+    .infoContainer {
+        width: 100%;
+        height: 320px;
+        margin: 8px 0;
+    }
+    .infoTitle {
+        font-size: 30px;
+    }
+    /* Run through an actual test to see if the information being dispayed will fit */
+    .infoColumn {
+        padding: 0;
+        font-size: 12px;
+    }
+
+    .weatherContainer {
+        width: 100%;
+        height: 320px;
+        margin: 8px 0;
+    }
+    .weatherTitle {
+        font-size: 30px;
+    }
+    h2 {
+        font-size: 28px;
+    }
+
+    .mapContainer {
+        height: 613px;
+        /* width: 377px; */
+        /* display: flex; */
+        /* justify-content: center; */
+        /* align-items: center; */
+    }
+    .map {
+        background-color: whitesmoke;
+        height: 280px;
+        width: 280px;
+
+    }
+}
+/* @media screen and (min-width: 400px) {
+
+}
+@media screen and (min-width: 800px) {
+
+} */

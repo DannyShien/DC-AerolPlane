@@ -89,7 +89,6 @@ function getFlightInfo(){
         // console.log(show);
 
         //Flight Number
-        debugger;
         const infoZero = document.createElement('li');
         infoZero.textContent = send[0];
         flightInfoElement.appendChild(infoZero);
@@ -167,7 +166,6 @@ function getCoordinatesForMap(){
 
 
 function initMap(gridlock){
-    // debugger;
     // console.log(gridlock);
 const x = parseInt(gridlock[0]);
 const y = parseInt(gridlock[1]);
@@ -216,7 +214,6 @@ function getWeatherInfo () {
     }) 
 
     .then(larry => {
-        debugger;
         let mainTemp = document.createElement('li');
         mainTemp.textContent = larry[0];
         // console.log(mainTemp);
@@ -238,7 +235,6 @@ function getWeatherInfo () {
         // maxTemp.textContent = `${larry[2]} °F`;
         // console.log(maxTemp);
 
-        // debugger;
         // getMin.appendChild(minTemp);
         // getMax.appendChild(maxTemp);
     })
