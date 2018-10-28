@@ -81,7 +81,7 @@ html, body {
     width: 700px;
 }
 i {
-    outline: 1px solid red;
+    /* outline: 1px solid red; */
     display: flex;
     text-align: center;
     font-size: 38px;
@@ -277,14 +277,15 @@ li {
 
 /* === === === MEDIA QUERY === === === */
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 380px) {
     /* html, body {
         max-width: 365px;
     } */
-    .homeContainer {
+    /*  Find out why when width is enabled, that the background is wider than what it's set at */
+    /* .homeContainer {
         height: 613px;
-        /* width: 377px; */
-    }
+        width: 377px;
+    } */
     .content {
         display: flex;
     }
@@ -359,9 +360,22 @@ li {
 
     }
 }
-/* @media screen and (min-width: 400px) {
-
-}
 @media screen and (min-width: 800px) {
+    .content {
+        display: flex;
+    }
+    .title {
+        font-size: 65px;
+    }
+    .icon {
+        width: 515px;
+    }
+    i {
+        font-size: 30px;
+    }
+}
+
+
+/* @media screen and (min-width: 1200px) {
 
 } */
