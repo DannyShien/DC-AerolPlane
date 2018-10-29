@@ -255,11 +255,11 @@ function getWeatherInfo (city) {
         // console.log('Returned temp');
         
         let minTemp  = temp.main.temp_min;
-        let minDeg = (((mainTemp - 273.15) * 1.8) + 32).toFixed(0); 
+        let minDeg = (((minTemp - 273.15) * 1.8) + 32).toFixed(0); 
         // console.log('Returned min temp');
 
         let maxTemp = temp.main.temp_max;
-        let maxDeg = (((mainTemp - 273.15) * 1.8) + 32).toFixed(0);
+        let maxDeg = (((maxTemp - 273.15) * 1.8) + 32).toFixed(0);
         // console.log('Returned max temp');
 
         let temperatures = []; 
