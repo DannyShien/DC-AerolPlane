@@ -21,6 +21,9 @@ html, body {
     /* background-image: linear-gradient(white, white, lightgray); */
     height: 100px;
 }
+.planeAnime {
+    height: 150px;
+}
 /* === === === ANIMATION === === === */
 @keyframes zoom {
     0% /* from */ {
@@ -81,7 +84,7 @@ html, body {
     width: 700px;
 }
 i {
-    outline: 1px solid red;
+    /* outline: 1px solid red; */
     display: flex;
     text-align: center;
     font-size: 38px;
@@ -95,7 +98,7 @@ i {
     /* background-color: lightcyan; */
     height: 610px;
     /* height: 535px; */
-    max-width: 100%;
+    /* max-width: 100%; */
 
     background-image:  url(../images/airplane2.jpg);
     /* background-image:  url(../images/airplane.jpg); */
@@ -262,29 +265,62 @@ li {
     height: 450px; 
     width: 715px;
 }
-/* === === === ABOUT THE ONES WHO BUILT THIS THING === === === */
+/* === === === ABOUT THE ONES WHO BUILT THIS STRESSFUL THING === === === */
 .aboutContainer {
-    background-color: lightsalmon;
+    /* background-color: lightsalmon; */
     height: 610px;
     /* height: 535px; */
 
-    background-image:  url(../images/airplane2.jpg);
+    background-image:  url(../images/airplane.jpg);
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
+.aboutColumn {
+    /* background-color: whitesmoke; */
+    display: flex; 
+    justify-content: space-around;
+    height: 500px;
+    width: 90%;
+}
+.profile {
+    /* background-color: white; */
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 450px;
+    width: 300px;
+    margin-top: 20px;
+}
 
+.profileImg {
+    /* background-color: white; */
+    background-color: rgba(255, 255, 255, 0.3);
+    height: 250px;
+    width: 250px;
+    border-radius: 10%;
+}
+.profileInfo {
+    /* background-color: white; */
+    background-color: rgba(255, 255, 255, 0.3);
+    height: 150px;
+    width: 250px;
+    margin-top: 15px;
+    border-radius: 5px;
+    overflow: auto;
+}
 /* === === === MEDIA QUERY === === === */
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 380px) {
     /* html, body {
         max-width: 365px;
     } */
-    .homeContainer {
+    /*  Find out why when width is enabled, that the background is wider than what it's set at */
+    /* .homeContainer {
         height: 613px;
-        /* width: 377px; */
-    }
+        width: 377px;
+    } */
     .content {
         display: flex;
     }
@@ -356,12 +392,25 @@ li {
         background-color: whitesmoke;
         height: 280px;
         width: 280px;
-
     }
 }
-/* @media screen and (min-width: 400px) {
 
-}
 @media screen and (min-width: 800px) {
+    .content {
+        display: flex;
+    }
+    .title {
+        font-size: 65px;
+    }
+    .icon {
+        width: 515px;
+    }
+    i {
+        font-size: 30px;
+    }
+}
+
+
+/* @media screen and (min-width: 1200px) {
 
 } */
