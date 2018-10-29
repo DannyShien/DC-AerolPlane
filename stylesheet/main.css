@@ -82,8 +82,8 @@ html, body {
 /* === === === HOME CONTAINER === === === */
 .homeContainer{
     /* background-color: lightskyblue; */
-    height: 610px;
-    /* height: 535px; */
+    /* height: 610px; */
+    height: 665px;
     display: flex;
     flex-direction: column;
 
@@ -128,17 +128,19 @@ i {
     /* outline: 1px solid red; */
     display: flex;
     text-align: center;
-    font-size: 38px;
+    font-size: 40px;
     /* color: rgba(95, 132, 185, 0.77); */
     color: white;
     width: 40px;
+    position: relative;
+    top: 25px;
 
 }
 /* === === === MAIN CONTAINER === === === */
 .mainContainer {
     /* background-color: lightcyan; */
-    height: 610px;
-    /* height: 535px; */
+    /* height: 610px; */
+    height: 665px;
     /* max-width: 100%; */
 
     background-image:  url(../images/airplane2.jpg);
@@ -177,7 +179,7 @@ i {
     /* background-color: white; */
     /* background-color: rgba(255, 255, 255, 0.8); */
     font-family: 'Mukta Malar', sans-serif;
-    font-size: 22px;
+    font-size: 26px;
     font-weight: bold;
     letter-spacing: 3px;
     word-spacing: 5px;
@@ -235,16 +237,13 @@ li {
     /* background-color: white; */
     background-color: rgba(255, 255, 255, 0);
     font-family: 'Mukta Malar', sans-serif;
-    font-size: 22px;
+    font-size: 26px;
     font-weight: bold;
     letter-spacing: 3px;
     word-spacing: 5px;
     color: black;
     /* text-shadow: 2px 2px 4px #000000; */
 }
-/* .font {
-    font-family: 'Mukta Malar', sans-serif;
-} */
 .weatherColumn {
     /* display: flex; */
     flex-direction: column;
@@ -253,21 +252,22 @@ li {
 .cityDisplay {
     /* background-color: rgba(255, 255, 255, 0.3); */
     display: flex;
-    font-size: 19px;
+    font-size: 28px;
     margin: 0;
+    position: relative;
+    top: 10px;
     /* text-shadow: 2px 2px 4px #7ecdf1; */
-}
-h2 {
-    margin-top: 15px;
 }
 .tempDisplay {
     height: 260px;
     display: flex;  
     justify-content: space-between;
-    padding-top: 40px;
+    /* padding-top: 40px; */
     /* font-family: 'Baloo Bhaina', cursive; */
     font-family: 'Mukta Malar', sans-serif;
     /* color: skyblue; */
+    position: relative;
+    top: 70px;
 }
 .minWeather {
     /* background-color: rgba(255, 255, 255, 0.3); */
@@ -282,7 +282,7 @@ h2 {
     /* text-shadow: 2px 2px 4px #000000; */
     /* background-color: rgba(255, 255, 255, 0.3); */
     /* justify-content: flex-end;  */
-    max-height: 100px;
+    height: 100px;
     width: 120px;
     flex: 2;
     /* font-size: 60px; */
@@ -304,8 +304,7 @@ h2 {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 610px;
-    /* height: 535px; */
+    height: 665px;
 }
 .map {
     background-color: rgba(179, 117, 117);
@@ -315,8 +314,8 @@ h2 {
 /* === === === ABOUT THE ONES WHO BUILT THIS STRESSFUL THING === === === */
 .aboutContainer {
     background-color: white;
-    height: 610px;
-    /* height: 535px; */
+    /* height: 610px; */
+    height: 665px;
 
     /* background-image:  url(../images/airplane.jpg); */
     background-attachment: fixed;
@@ -328,7 +327,7 @@ h2 {
     /* background-color: whitesmoke; */
     display: flex; 
     justify-content: space-around;
-    height: 500px;
+    height: 560px;
     width: 90%;
 }
 .profile {
@@ -336,8 +335,8 @@ h2 {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    height: 450px;
-    width: 300px;
+    height: 540px;
+    width: 380px;
     margin-top: 20px;
 }
 
@@ -345,123 +344,187 @@ h2 {
     /* background-color: white; */
     outline: 2px solid black;
     background-color: rgba(255, 255, 255, 0.3);
-    height: 250px;
-    width: 250px;
+    height: 300px;
+    width: 300px;
     border-radius: 10%;
     /* border-bottom-color: #000000; */
+    position: relative;
+    bottom: 15px;
 }
 .profileInfo {
     /* background-color: white; */
     background-color: rgba(255, 255, 255, 0.3);
     outline: 2px solid black;
     height: 150px;
-    width: 250px;
-    margin-top: 15px;
+    width: 340px;
     padding: 2px;
+    margin: 40px;
     border-radius: 5px;
     overflow: auto;
+    /* position: relative; */
+    /* top: 30px; */
 }
 /* === === === MEDIA QUERY === === === */
+/* === === MOBILE-ISH === === */
 
-@media screen and (max-width: 380px) {
-    /* html, body {
-        max-width: 365px;
-    } */
-    /*  Find out why when width is enabled, that the background is wider than what it's set at */
-    /* .homeContainer {
-        height: 613px;
-        width: 377px;
-    } */
-    .content {
+
+/* === === iPAD-ISH === === */
+@media screen and (max-width: 800px) and (min-width: 391px) { 
+    .title {
+        font-size: 70px;
+    }
+    .icon {
+        width: 650px; 
+        position: relative; 
+        top: 40px;
+    }
+    i { 
+        font-size: 40px;
+    }
+    .mainContainer {
         display: flex;
     }
+    .mainColumn {
+        flex-direction: row;
+        justify-content: space-around;
+        width: 780px;
+        height: 370px;
+    }
+    .infoContainer {
+        margin: 0;
+        width: 330px;
+        height: 340px;
+    }
+    .weatherContainer {
+        margin: 0; 
+        width: 330px;
+        height: 340px;
+    }
+    .weatherTitle {
+        font-size: 24px;
+    }
+    .cityDisplay { 
+        position: relative; 
+        bottom: 10px; 
+        font-size: 28px;
+    }
+    .minWeather {
+        position: relative;
+        right: 10px;
+        font-size: 26px; 
+    }
+    .mainWeather {
+        top: 15px;
+        font-size: 60px;
+    }
+    .maxWeather {
+        position: relative;
+        left: 5px;
+        font-size: 26px; 
+    }
+    .map {
+        width: 600px;
+        height: 450px;
+    }
+    .aboutColumn {
+        display: flex; 
+        flex-direction: row;
+        width: 750px;
+    }
+    .profileImg {
+        height: 315px;
+        width: 315px;
+    }
+    .profileInfo {
+        position: relative;
+        top: 25px;
+    }
+}
+
+@media screen and (max-width: 390px) {
     .title {
         font-size: 45px;
     }
-    .form {
-        font-size: 12px;
-    }
-    button {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 9;
-        margin-left: 87px;
-        margin-top: 10px;
-    }
     .icon {
-        width: 215px;
+        width: 290px;
+        position: relative; 
+        top: 100px;
     }
     i {
-        font-size: 24px;
+        font-size: 30px;
     }
 
     .mainContainer {
-        height: 613px;
-        width: 377px;
+        display: flex;
     }
     .mainColumn {
-        display: flex;
         flex-direction: column;
-        height: 612px;
-        padding: 0;
+        height: 600px;
+        width: 330px;
     }
     .infoContainer {
-        width: 100%;
-        height: 320px;
-        margin: 8px 0;
+        width: 310px;
+        margin: 0 0 15px;
     }
-    .infoTitle {
-        font-size: 30px;
-    }
-    /* Run through an actual test to see if the information being dispayed will fit */
-    .infoColumn {
-        padding: 0;
-        font-size: 12px;
-    }
-
     .weatherContainer {
-        width: 100%;
-        height: 320px;
-        margin: 8px 0;
+        width: 310px; 
+        margin: 5px 0 0;
     }
     .weatherTitle {
-        font-size: 30px;
+        font-size: 22px;
     }
-    h2 {
+    .cityDisplay {
+        font-size: 26px;
+        position: relative;
+        top: 10px;
+    }
+    /* .tempDisplay {
+        padding: 20px 0;
+        height: 150px;
+    } */
+    /* .minWeather {
+        position: relative;
         font-size: 28px;
-    }
+        top: 60px;
+        right: 10px;
+    } */
+    /* .mainWeather {
+        position: relative; 
+        bottom: 20px;;
+        font-size: 50px;
+    } */
+    /* .maxWeather {
+        position: relative;
+        font-size: 28px; 
+        top: 60px;
+        left: 10px;
+    } */
 
-    .mapContainer {
-        height: 613px;
-        /* width: 377px; */
-        /* display: flex; */
-        /* justify-content: center; */
-        /* align-items: center; */
-    }
     .map {
-        background-color: whitesmoke;
-        height: 280px;
-        width: 280px;
-    }
-}
-
-@media screen and (min-width: 800px) {
-    .content {
         display: flex;
+        width: 350px;
+        height: 340px;
     }
-    .title {
-        font-size: 65px;
+
+    .aboutColumn {
+        display: flex; 
+        flex-direction: column;
+        height: 610px; 
+        width: 340px;
     }
-    .icon {
-        width: 515px;
+    .profile {
+        height: 390px;
+        width: 340px; 
     }
-    i {
-        font-size: 30px;
+    .profileImg {
+        height: 300px;
+        width: 270px; 
+    }
+    .profileInfo {
+        height: 90px;
+        /* position: relative;
+        bottom: 25px; */
     }
 }
 
 
-/* @media screen and (min-width: 1200px) {
-
-} */
