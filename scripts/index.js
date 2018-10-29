@@ -9,7 +9,6 @@ const mapElement = document.querySelector('[data-mapStarter]');
 
 //testing airport code to city to weather
 const connectingElement = document.querySelector('[data-connector]');
-// const cityNameElement = document.querySelector('[data-city]');
 
 // Flight info API
 function getFlightInfo(){
@@ -252,15 +251,15 @@ function getWeatherInfo (city) {
     
     .then(temp => {
         let mainTemp = temp.main.temp;
-        let mainDeg = ((mainTemp - 273.15) * 9/5 + 32).toFixed(1);
+        let mainDeg = (((mainTemp - 273.15) * 1.8) + 32).toFixed(0);
         // console.log('Returned temp');
         
         let minTemp  = temp.main.temp_min;
-        let minDeg = ((minTemp - 273.15) * 9/5 + 32).toFixed(1); 
+        let minDeg = (((mainTemp - 273.15) * 1.8) + 32).toFixed(0); 
         // console.log('Returned min temp');
 
         let maxTemp = temp.main.temp_max;
-        let maxDeg = ((maxTemp - 273.15) * 9/5 + 32).toFixed(1);
+        let maxDeg = (((mainTemp - 273.15) * 1.8) + 32).toFixed(0);
         // console.log('Returned max temp');
 
         let temperatures = []; 
