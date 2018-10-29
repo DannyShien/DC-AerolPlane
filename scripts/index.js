@@ -2,13 +2,13 @@
 const starterElement = document.querySelector('[data-flightStarter]');
 
 // WEATHER
-const weatherElement = document.querySelector('[data-weatherStarter]');
+// const weatherElement = document.querySelector('[data-weatherStarter]');
 
 // MAP
 const mapElement = document.querySelector('[data-mapStarter]');
 
 //testing airport code to city to weather
-const testElement = document.querySelector('[data-testing]');
+const connectingElement = document.querySelector('[data-connector]');
 
 // Flight info API
 function getFlightInfo(){
@@ -182,86 +182,67 @@ var marker = new google.maps.Marker({position: plane, map: map});
 
 
 // flight info to airport to city to weather
-function testing(){
-    console.log("testing testing");
+function connectingFlightInfoToWeatherInfo(){
+    console.log("Connecting flight number to weather");
     event.preventDefault();
 
     // Fetch API and convert to Json
     fetch("http://aviation-edge.com/v2/public/flights?key=5f3420-01f81d")
     .then(r => r.json())
+    
     // Extracts flight info
     .then((data) =>{
         // Connecting with <form>
         const userFlightInput = document.querySelector('[data-inputInfo]').value;
         let planeObj = data.filter((planeFinder) =>{
-            return userFlightInput === planeFinder.flight.iataNumber;
-        });
-        // console.log(planeObj);
-        return planeObj;
-    })
-    // Filtering through flight info to grab airport IATACODE
-    .then((result) =>{
-        // Filters through flight into
-        const dataFinder = result.filter((finder) =>{
-            // Arrival city airport code
-            const airportIataCode = finder.arrival.iataCode;
-            return airportIataCode;
-        });
-        // debugger;
-        return dataFinder;
-    })
-    // Using airport IATACODE to compare it to airport API to grab airport info
-    .then((compare) => {
-        // console.log(compare);
-        console.log(compare)
-        return compare
-    })
-    .then((get) => {
-        fetch("https://aviation-edge.com/v2/public/airportDatabase?key=5f3420-01f81d");
-        return get;
-    })
-    .then((s) => {
-        s.json()
-        return s;
-    })   
-    .then((airportCode) =>{
-        // debugger;
-        const levelOne = airportCode.filter((cityFinder) =>{
-            if (compare.arrival.iataCode === (cityFinder.codeIataAirport)){
-                // console.log(cityFinder.codeIataCity);                    
-                return cityFinder.codeIataCity;
+            if ((userFlightInput) === (planeFinder.flight.iataNumber)){
+                return true;
             };
-        // console.log(levelOne);
-        return levelOne;
         });
+        let arrivalCode = planeObj[0].arrival.iataCode;
+        return arrivalCode;
     })
-    .then((cityCode) =>{
-       console.log(cityCode);
+    
+    // Using airport IATACODE to compare it to airport API to grab airport info
+    .then((compare) =>{
+        fetch("https://aviation-edge.com/v2/public/airportDatabase?key=5f3420-01f81d")
+        .then(s =>s.json())
+        .then((getAirportCode) =>{
+            let levelOne = getAirportCode.filter((cityFinder) =>{
+                if ((compare) === (cityFinder.codeIataAirport)){
+                    return true;
+                };
+            })
+        let cityCode = levelOne[0].codeIataCity
+        return cityCode;
+        })
+        // Using city iata code grab city name from city API
+        .then((city) =>{
+            // console.log(city);
+            fetch("https://aviation-edge.com/v2/public/cityDatabase?key=5f3420-01f81d")
+            .then(t =>t.json())
+            .then((getCityName) =>{
+                let levelTwo = getCityName.filter((nameFinder) =>{
+                    if((city) === (nameFinder.codeIataCity)){
+                        return true;
+                    };
+                })
+            let cityName = levelTwo[0].nameCity;
+            return cityName;
+            })
+            .then(getWeatherInfo)
+        })
+        
     })
-
-
-
-    // fetch("https://aviation-edge.com/v2/public/cityDatabase?key=5f3420-01f81d")
-    // .then(r => r.json())
-    // .then((data) =>{
-    //     const userFlightInput = document.querySelector('[data-inputInfo]').value;
-    //     let planeObj = data.filter((planeFinder) =>{
-    //         return userFlightInput === planeFinder.flight.iataNumber;
-    //     });
-    //     return planeObj;
-    // })
-    // .then((airportCode) =>{
-    //     const codeFinder = airportCode.map((finder) =>{
-    //         if ((finder.arrival.iataCode) === ())
-    //     })
-    // })
 };
 
 
 //  Find weather API
-function getWeatherInfo () {
-    console.log('Getting weather');
-    fetch(`http://api.openweathermap.org/data/2.5/weather?q=Atlanta&APPID=dee07fae47d614b4f9cb0a8cd0a2cfeb`)
+function getWeatherInfo (city) {
+    // debugger;
+    console.log(city);
+    // let subCity = `${city}`;
+    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=dee07fae47d614b4f9cb0a8cd0a2cfeb`)
     .then(r => r.json())
     
     .then(temp => {
@@ -316,9 +297,9 @@ function getWeatherInfo () {
 function main(){
     starterElement.addEventListener('click', getFlightInfo);
     mapElement.addEventListener('click', getCoordinatesForMap);
-    weatherElement.addEventListener('click', getWeatherInfo);
+    // weatherElement.addEventListener('click', getWeatherInfo);
 
-    testElement.addEventListener('click', testing);
+    connectingElement.addEventListener('click', connectingFlightInfoToWeatherInfo);
 };
 
 main();
