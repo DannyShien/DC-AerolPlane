@@ -164,7 +164,6 @@ function getCoordinatesForMap(){
 
 // Displaying the map
 function initMap(gridlock){
-    // debugger;
     // console.log(gridlock);
 const x = parseInt(gridlock[0]);
 const y = parseInt(gridlock[1]);
@@ -270,23 +269,22 @@ function getWeatherInfo (city) {
 
     .then(larry => {
         const getTemp = document.querySelector('[data-weatherInfo]');
-        const mainTemp = document.createElement('div');
+        const mainTemp = document.createElement('li');
         mainTemp.textContent = `${larry[0]} °F`;
         getTemp.appendChild(mainTemp);
         // console.log(mainTemp);
 
         const getMin = document.querySelector('[data-weatherInfo]');
-        const minTemp = document.createElement('div');
+        const minTemp = document.createElement('li');
         minTemp.textContent = `${larry[1]} °F`;
         getMin.appendChild(minTemp);
         // console.log(minTemp);
 
         const getMax = document.querySelector('[data-weatherInfo]');
-        const maxTemp = document.createElement('div');
+        const maxTemp = document.createElement('li');
         maxTemp.textContent = `${larry[2]} °F`;
         getMax.appendChild(maxTemp);
         // console.log(maxTemp);
-
     })
     return
 };
