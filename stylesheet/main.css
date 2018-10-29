@@ -314,15 +314,20 @@ h2 {
     /* height: 535px; */
 }
 .homeMap {
-    outline: 2px solid red;
+    /* outline: 2px solid red; */
     position: relative;
     bottom: 275px;
-    right: 242px;
+    right: 25px;
     /* max-width: 100%; */
 }
 .mapColumn {
     display: flex;
     justify-content: center;
+    height: 317px;
+    width: 90%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    /* border-radius: 25%; */
 }
 
 .map {
