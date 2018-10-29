@@ -1,14 +1,17 @@
+// Starter for ALL
+const mainStarterElement = document.querySelector('[data-starter]');
+
 // FLIGHT
-const starterElement = document.querySelector('[data-flightStarter]');
+// const starterElement = document.querySelector('[data-flightStarter]');
 
 // WEATHER
 // const weatherElement = document.querySelector('[data-weatherStarter]');
 
 // MAP
-const mapElement = document.querySelector('[data-mapStarter]');
+// const mapElement = document.querySelector('[data-mapStarter]');
 
 //testing airport code to city to weather
-const connectingElement = document.querySelector('[data-connector]');
+// const connectingElement = document.querySelector('[data-connector]');
 
 
 // Flight info API
@@ -294,17 +297,19 @@ function getWeatherInfo (city) {
     return
 };
 
-
-
-
-
+function getAllFunctions(){
+    getFlightInfo();
+    getCoordinatesForMap();
+    connectingFlightInfoToWeatherInfo();
+}
 
 function main(){
-    starterElement.addEventListener('click', getFlightInfo);
-    mapElement.addEventListener('click', getCoordinatesForMap);
+    mainStarterElement.addEventListener('click', getAllFunctions);
+    // starterElement.addEventListener('click', getFlightInfo);
+    // mapElement.addEventListener('click', getCoordinatesForMap);
     // weatherElement.addEventListener('click', getWeatherInfo);
 
-    connectingElement.addEventListener('click', connectingFlightInfoToWeatherInfo);
+    // connectingElement.addEventListener('click', connectingFlightInfoToWeatherInfo);
 };
 
 main();

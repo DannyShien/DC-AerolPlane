@@ -154,13 +154,6 @@ i {
     bottom: 275px;
     right: 25px;
 }
-.homeMap{
-    /* outline: 2px solid red; */
-    position: relative;
-    bottom: 275px;
-    right: 242px;
-
-}
 /* === === === FLIGHT / WEATHER COLUMN === === === */
 .mainColumn {
     display: flex;
@@ -320,6 +313,18 @@ h2 {
     height: 610px;
     /* height: 535px; */
 }
+.homeMap {
+    outline: 2px solid red;
+    position: relative;
+    bottom: 275px;
+    right: 242px;
+    /* max-width: 100%; */
+}
+.mapColumn {
+    display: flex;
+    justify-content: center;
+}
+
 .map {
     background-color: rgba(179, 117, 117);
     height: 450px; 
