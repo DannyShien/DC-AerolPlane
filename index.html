@@ -19,7 +19,7 @@
                 <label> Search Flight Number:
                     <input type="text" name="flightNumber" placeholder="DL388" data-inputInfo>
                 </label>
-                <button class="button" type="submit" data-flightStarter data-weatherStarter data-mapStarter data-connector>Find flight</button>  
+                <button class="button" type="submit" data-starter>Find flight</button>  
             </form>
         </div>
         <div class="icon animation">
@@ -33,6 +33,11 @@
 
     <!-- === === === FLIGHT INFORMATION === === === -->
     <section class="mainContainer center" id="flightInfo">
+        <div class="home">
+            <div class="top">
+                <a href="#home"><i class="fas fa-angle-up"></i></a>
+            </div>
+        </div>
         <div class="mainColumn">
             <div class="infoContainer">
                 <div class="infoTitle center">FLIGHT INFO</div>
@@ -66,9 +71,16 @@
     <section class="divider"></section>
 
     <!--  === === === MAP DISPLAY === === === -->
-    <div class="mapContainer center" id="mapInfo" data-mapDisplay>
-        <div class="map" data-display></div>
-    </div>
+    <section class="mapContainer center" id="mapInfo" data-mapDisplay>
+        <div class="homeMap">
+            <div class="top">
+                <a href="#home"><i class="fas fa-angle-up"></i></a>
+            </div>
+        </div>
+        <div class="mapColumn">
+            <div class="map" data-display></div>
+        </div>
+    </section>
 
     <section class="planeAnime">
         <img class="cloud" src="/images/cloud128.png">
@@ -80,6 +92,11 @@
 
     <!-- === === === ABOUT THE UNTALENTED BUILDERS === === === -->
     <section class="aboutContainer center" id="aboutUs">
+        <div class="home">
+            <div class="top">
+                <a href="#home"><i class="fas fa-angle-up"></i></a>
+            </div>
+        </div>
         <div class="aboutColumn">
             <div class="profile center">
                 <div class="profileImg"></div>
