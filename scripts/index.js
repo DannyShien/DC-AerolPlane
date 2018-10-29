@@ -10,6 +10,7 @@ const mapElement = document.querySelector('[data-mapStarter]');
 //testing airport code to city to weather
 const connectingElement = document.querySelector('[data-connector]');
 
+
 // Flight info API
 function getFlightInfo(){
     console.log("Button is good for Plane");
@@ -68,12 +69,12 @@ function getFlightInfo(){
 
             //Speed
             const mph = finder.speed.horizontal;
-            const textFive = `Speed of Aircraft: ${mph} MPH`;
+            const textFive = `Aircraft Speed: ${mph} mph`;
             let six = dataCollector.push(textFive);
 
             //Altitude
             const alt = finder.geography.altitude;
-            const textSix = `Altitude of Aircraft: ${alt} ft`;
+            const textSix = `Altitude: ${alt} ft`;
             let seven = dataCollector.push(textSix);
         });
         return dataCollector;
