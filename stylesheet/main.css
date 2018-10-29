@@ -148,6 +148,19 @@ i {
     background-repeat: no-repeat;
     background-size: cover;
 }
+.home{
+    /* outline: 2px solid red; */
+    position: relative;
+    bottom: 275px;
+    right: 25px;
+}
+.homeMap{
+    /* outline: 2px solid red; */
+    position: relative;
+    bottom: 275px;
+    right: 242px;
+
+}
 /* === === === FLIGHT / WEATHER COLUMN === === === */
 .mainColumn {
     display: flex;
