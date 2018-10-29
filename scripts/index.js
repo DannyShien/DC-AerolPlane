@@ -10,6 +10,7 @@ const mapElement = document.querySelector('[data-mapStarter]');
 //testing airport code to city to weather
 const connectingElement = document.querySelector('[data-connector]');
 
+
 // Flight info API
 function getFlightInfo(){
     console.log("Button is good for Plane");
@@ -228,6 +229,10 @@ function connectingFlightInfoToWeatherInfo(){
                     };
                 })
             let cityName = levelTwo[0].nameCity;
+            const cityNameElement = document.querySelector('[data-city]');
+            const infoCityName = document.createElement('h2');
+            infoCityName.textContent = cityName;
+            cityNameElement.appendChild(infoCityName);
             return cityName;
             })
             .then(getWeatherInfo)
@@ -268,20 +273,20 @@ function getWeatherInfo (city) {
     }) 
 
     .then(larry => {
-        const getTemp = document.querySelector('[data-weatherInfo]');
-        const mainTemp = document.createElement('li');
+        const getTemp = document.querySelector('[data-mainWeather]');
+        const mainTemp = document.createElement('div');
         mainTemp.textContent = `${larry[0]} °F`;
         getTemp.appendChild(mainTemp);
         // console.log(mainTemp);
 
-        const getMin = document.querySelector('[data-weatherInfo]');
-        const minTemp = document.createElement('li');
+        const getMin = document.querySelector('[data-minWeather]');
+        const minTemp = document.createElement('div');
         minTemp.textContent = `${larry[1]} °F`;
         getMin.appendChild(minTemp);
         // console.log(minTemp);
 
-        const getMax = document.querySelector('[data-weatherInfo]');
-        const maxTemp = document.createElement('li');
+        const getMax = document.querySelector('[data-maxWeather]');
+        const maxTemp = document.createElement('div');
         maxTemp.textContent = `${larry[2]} °F`;
         getMax.appendChild(maxTemp);
         // console.log(maxTemp);
