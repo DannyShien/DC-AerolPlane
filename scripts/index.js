@@ -69,12 +69,12 @@ function getFlightInfo(){
 
             //Speed
             const mph = finder.speed.horizontal;
-            const textFive = `Speed of Aircraft: ${mph} MPH`;
+            const textFive = `Aircraft Speed: ${mph} mph`;
             let six = dataCollector.push(textFive);
 
             //Altitude
             const alt = finder.geography.altitude;
-            const textSix = `Altitude of Aircraft: ${alt} ft`;
+            const textSix = `Altitude: ${alt} ft`;
             let seven = dataCollector.push(textSix);
         });
         return dataCollector;
