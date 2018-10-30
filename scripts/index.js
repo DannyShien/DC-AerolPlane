@@ -1,9 +1,6 @@
 // Starter for ALL
 const mainStarterElement = document.querySelector('[data-starter]');
 
-// Input Value
-const userFlightInput = document.querySelector('[data-inputInfo]').value;
-
 // FLIGHT
 // const starterElement = document.querySelector('[data-flightStarter]');
 
@@ -32,6 +29,7 @@ function getFlightInfo(){
     .then((data) =>{
 
         // Connecting with submitted form
+        const userFlightInput = document.querySelector('[data-inputInfo]').value;
         let planeObj = data.filter((planeFinder) =>{
                 return userFlightInput === planeFinder.flight.iataNumber;
             });
@@ -154,6 +152,7 @@ function getCoordinatesForMap(){
     .then((data) =>{
 
         // Connecting with submitted form
+        const userFlightInput = document.querySelector('[data-inputInfo]').value;
         let planeObj = data.filter((planeFinder) =>{
             return userFlightInput === planeFinder.flight.iataNumber;
         })
@@ -219,6 +218,7 @@ function connectFlightInfoToWeatherInfo(){
     .then((data) =>{
 
         // Using submitted form to match with flight info
+        const userFlightInput = document.querySelector('[data-inputInfo]').value;
         let planeObj = data.filter((planeFinder) =>{
             if ((userFlightInput) === (planeFinder.flight.iataNumber)){
                 return true;
