@@ -19,7 +19,7 @@ html, body {
 .divider {
     background-color: white;
     /* background-image: linear-gradient(white, white, lightgray); */
-    height: 100px;
+    height: 150px;
 }
 .planeAnime {
     height: 200px;
@@ -82,8 +82,8 @@ html, body {
 /* === === === HOME CONTAINER === === === */
 .homeContainer{
     /* background-color: lightskyblue; */
-    /* height: 610px; */
-    height: 665px;
+    height: 765px;
+    /* height: 665px; */
     display: flex;
     flex-direction: column;
 
@@ -118,7 +118,7 @@ html, body {
 .icon {
     /* outline: 1px solid lightskyblue; */
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: flex-end;
     height: 50px;
     margin-top: 50px;
@@ -128,39 +128,43 @@ i {
     /* outline: 1px solid red; */
     display: flex;
     text-align: center;
-    font-size: 40px;
-    /* color: rgba(95, 132, 185, 0.77); */
+    font-size: 50px;
+    /* color: rgb(145, 211, 255); */
     color: white;
     width: 40px;
     position: relative;
-    top: 25px;
+    top: 50px;
 
 }
 /* === === === MAIN CONTAINER === === === */
 .mainContainer {
     /* background-color: lightcyan; */
-    /* height: 610px; */
-    height: 665px;
-    /* max-width: 100%; */
-
+    height: 765px;
+    /* height: 665px; */
     background-image:  url(../images/airplane2.jpg);
     /* background-image:  url(../images/airplane.jpg); */
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    display: flex; 
+    flex-direction: column;
 }
-.home{
-    /* outline: 2px solid red; */
+/* .home{
+    align-items: flex-start;
     position: relative;
-    bottom: 275px;
-    right: 25px;
+    bottom: 70px;
+
 }
+.top {
+    outline: 1px solid red;
+    width: 200px;
+} */
 /* === === === FLIGHT / WEATHER COLUMN === === === */
 .mainColumn {
     display: flex;
     justify-content: space-between;
-    height: 317px;
+    height: 417px;
     width: 90%;
     padding-top: 15px;
     padding-bottom: 15px;
@@ -185,7 +189,7 @@ i {
     /* background-color: white; */
     /* background-color: rgba(255, 255, 255, 0.8); */
     font-family: 'Mukta Malar', sans-serif;
-    font-size: 26px;
+    font-size: 35px;
     font-weight: bold;
     letter-spacing: 3px;
     word-spacing: 5px;
@@ -243,7 +247,7 @@ li {
     /* background-color: white; */
     background-color: rgba(255, 255, 255, 0);
     font-family: 'Mukta Malar', sans-serif;
-    font-size: 26px;
+    font-size: 35px;
     font-weight: bold;
     letter-spacing: 3px;
     word-spacing: 5px;
@@ -310,72 +314,72 @@ li {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 665px;
+    /* height: 665px; */
+    height: 765px; 
 }
-.homeMap {
-    /* outline: 2px solid red; */
+/* .homeMap {
+    outline: 2px solid red;
     position: relative;
     bottom: 275px;
     right: 25px;
-    /* max-width: 100%; */
-}
-.mapColumn {
+    max-width: 100%;
+} */
+/* .mapColumn {
     display: flex;
     justify-content: center;
     height: 317px;
     width: 90%;
     padding-top: 15px;
     padding-bottom: 15px;
-    /* border-radius: 25%; */
-}
+    border-radius: 25%;
+} */
 
 .map {
-    background-color: rgba(179, 117, 117);
+    /* background-color: rgba(179, 117, 117); */
     height: 450px; 
     width: 715px;
 }
 /* === === === ABOUT THE ONES WHO BUILT THIS STRESSFUL THING === === === */
-.aboutContainer {
+/* .aboutContainer {
     background-color: white;
-    /* height: 610px; */
+    height: 765px;
     height: 665px;
 
-    /* background-image:  url(../images/airplane.jpg); */
+    background-image:  url(../images/airplane.jpg);
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-}
-.aboutColumn {
-    /* background-color: whitesmoke; */
+} */
+/* .aboutColumn {
+    background-color: whitesmoke;
     display: flex; 
     justify-content: space-around;
     height: 560px;
     width: 90%;
-}
-.profile {
-    /* background-color: white; */
+} */
+/* .profile {
+    background-color: white;
     display: flex;
     justify-content: center;
     flex-direction: column;
     height: 540px;
     width: 380px;
     margin-top: 20px;
-}
-
+} */
+/* 
 .profileImg {
-    /* background-color: white; */
+    background-color: white;
     outline: 2px solid black;
     background-color: rgba(255, 255, 255, 0.3);
     height: 300px;
     width: 300px;
     border-radius: 10%;
-    /* border-bottom-color: #000000; */
     position: relative;
     bottom: 15px;
-}
-.profileInfo {
-    /* background-color: white; */
+} */
+/* .profileInfo {
+    background-color: white;
     background-color: rgba(255, 255, 255, 0.3);
     outline: 2px solid black;
     height: 150px;
@@ -384,9 +388,7 @@ li {
     margin: 40px;
     border-radius: 5px;
     overflow: auto;
-    /* position: relative; */
-    /* top: 30px; */
-}
+} */
 /* === === === MEDIA QUERY === === === */
 /* === === MOBILE-ISH === === */
 
@@ -543,7 +545,7 @@ li {
         height: 300px;
         width: 270px; 
     }
-    .profileInfo {∫
+    .profileInfo {
         height: 90px;
         /* position: relative;
         bottom: 25px; */
