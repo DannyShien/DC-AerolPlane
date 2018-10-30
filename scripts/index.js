@@ -35,7 +35,11 @@ function getFlightInfo(){
         // Connecting with submitted form
         const userFlightInput = document.querySelector('[data-inputInfo]').value;
         let planeObj = data.filter((planeFinder) =>{
+            if(userFlightInput !== planeFinder.flight.iataNumber){
+                alert.window("Invalid entry, please re-enter the correct flight number.");
+            }else{
                 return userFlightInput === planeFinder.flight.iataNumber;
+            }
             });
 
             // Returns flight info object
@@ -44,7 +48,9 @@ function getFlightInfo(){
 
     // Catches invalid entries or not available flight
     .catch(err => {
-        console.log(err)
+        if(err === []){
+            alert.window("Flight not en-route. Please re-enter a flight en-route.");
+        };
     })
 
     // Filtering through flight info and putting it into array
