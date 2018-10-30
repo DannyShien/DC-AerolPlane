@@ -26,7 +26,7 @@ function getFlightInfo(){
     event.preventDefault();
     
     // Fetch API and convert to Json
-    fetch("http://aviation-edge.com/v2/public/flights?key=5f3420-01f81d")
+    fetch(`http://aviation-edge.com/v2/public/flights?key=${flight_Key}`)
     .then(r => r.json())
 
     // Extracts flight info
@@ -157,7 +157,7 @@ function getCoordinatesForMap(){
     event.preventDefault();
 
     // Fetch Flight API and convert to Json
-    fetch("http://aviation-edge.com/v2/public/flights?key=5f3420-01f81d")
+    fetch(`http://aviation-edge.com/v2/public/flights?key=${flight_Key}`)
     .then(r => r.json())
 
     // Getting coordinates
@@ -221,7 +221,7 @@ function connectingFlightInfoToWeatherInfo(){
     event.preventDefault();
 
     // Fetch API and convert to Json
-    fetch("http://aviation-edge.com/v2/public/flights?key=5f3420-01f81d")
+    fetch(`http://aviation-edge.com/v2/public/flights?key=${flight_Key}`)
     .then(r => r.json())
     
     // Extracts flight info
@@ -244,7 +244,7 @@ function connectingFlightInfoToWeatherInfo(){
     .then((compare) =>{
 
         // Fetch Flight API and convert to Json
-        fetch("https://aviation-edge.com/v2/public/airportDatabase?key=5f3420-01f81d")
+        fetch(`https://aviation-edge.com/v2/public/airportDatabase?key=${flight_Key}`)
         .then(s =>s.json())
 
         // Checking to see if airport code is equal to airport code in airport api
@@ -264,7 +264,7 @@ function connectingFlightInfoToWeatherInfo(){
         .then((city) =>{
 
              // Fetch Flight API and convert to Json
-            fetch("https://aviation-edge.com/v2/public/cityDatabase?key=5f3420-01f81d")
+            fetch(`https://aviation-edge.com/v2/public/cityDatabase?key=${flight_Key}`)
             .then(t =>t.json())
 
             // Checking to see if city code is equal to city code in city api
@@ -296,7 +296,7 @@ function getWeatherInfo (city) {
     console.log(city);
 
     // Fetch Flight API and convert to Json
-    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=dee07fae47d614b4f9cb0a8cd0a2cfeb`)
+    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${weather_Key}`)
     .then(r => r.json())
     
     // Convert gathered temperatures from Kelvin to Fahrenheit 
