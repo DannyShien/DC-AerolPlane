@@ -1,6 +1,9 @@
 // Starter for ALL
 const mainStarterElement = document.querySelector('[data-starter]');
 
+// Input Value
+const userFlightInput = document.querySelector('[data-inputInfo]').value;
+
 // FLIGHT
 // const starterElement = document.querySelector('[data-flightStarter]');
 
@@ -13,10 +16,6 @@ const mainStarterElement = document.querySelector('[data-starter]');
 //testing airport code to city to weather
 // const connectingElement = document.querySelector('[data-connector]');
 
-// Clear all data
-function clearAll(){
-
-};
 
 // Setting up to get Flight info API
 function getFlightInfo(){
@@ -33,30 +32,18 @@ function getFlightInfo(){
     .then((data) =>{
 
         // Connecting with submitted form
-        const userFlightInput = document.querySelector('[data-inputInfo]').value;
         let planeObj = data.filter((planeFinder) =>{
-            if(userFlightInput !== planeFinder.flight.iataNumber){
-                alert.window("Invalid entry, please re-enter the correct flight number.");
-            }else{
                 return userFlightInput === planeFinder.flight.iataNumber;
-            }
             });
 
             // Returns flight info object
             return planeObj;
     })
 
-    // Catches invalid entries or not available flight
-    .catch(err => {
-        if(err === []){
-            alert.window("Flight not en-route. Please re-enter a flight en-route.");
-        };
-    })
-
-    // Filtering through flight info and putting it into array
+    // Filtering through flight info and putting grabbed data into array
     .then((result) =>{
 
-        // compiling collected data into array
+        // Adding collected data into array
         let dataCollector = [];
 
         // Filters through flight info object
@@ -65,39 +52,42 @@ function getFlightInfo(){
             // Flight number
             const flightIataNumber = finder.flight.iataNumber;
             const textZero = `Flight Number: ${flightIataNumber}`;
-            let zero = dataCollector.push(textZero);
+            dataCollector.push(textZero);
 
             // Status
             const currentStatus = finder.status;
             const textOne = `Status: "${currentStatus}"`;
-            let one = dataCollector.push(textOne);
+            dataCollector.push(textOne);
 
             // Coordinates
             const lat = finder.geography.latitude;
             const long = finder.geography.longitude;
             const textTwo = `Coordinates: (${lat}, ${long})`;
-            let three = dataCollector.push(textTwo);
+            dataCollector.push(textTwo);
 
             // Departure
             const depart = finder.departure.iataCode;
             const textThree = `Departure Airport: ${depart}`;
-            let four = dataCollector.push(textThree);
+            dataCollector.push(textThree);
 
             // Arrival
             const arrive = finder.arrival.iataCode;
             const textFour = `Arrival Airport: ${arrive}`;
-            let five = dataCollector.push(textFour);
+            dataCollector.push(textFour);
 
             // Speed
-            const mph = finder.speed.horizontal;
+            const kph = finder.speed.horizontal;
+            const mph =  (kph * 0.6213711922).toFixed(0);
             const textFive = `Aircraft Speed: ${mph} mph`;
-            let six = dataCollector.push(textFive);
+            dataCollector.push(textFive);
 
             // Altitude
-            const alt = finder.geography.altitude;
-            const textSix = `Altitude: ${alt} ft`;
-            let seven = dataCollector.push(textSix);
+            const meter = finder.geography.altitude;
+            const feet = (meter * 3.2808).toFixed(0);
+            const textSix = `Altitude: ${feet} ft`;
+            dataCollector.push(textSix);
         });
+
         // Returns an array of flight info
         return dataCollector;
     })
@@ -164,7 +154,6 @@ function getCoordinatesForMap(){
     .then((data) =>{
 
         // Connecting with submitted form
-        const userFlightInput = document.querySelector('[data-inputInfo]').value;
         let planeObj = data.filter((planeFinder) =>{
             return userFlightInput === planeFinder.flight.iataNumber;
         })
@@ -175,6 +164,8 @@ function getCoordinatesForMap(){
 
     // Filtering through flight info object to grab the coordinates
     .then((result) =>{
+
+        // Adding coordinates into array
         const grid = [];
 
         // Filters through flight into to grab and push coordinates
@@ -183,11 +174,11 @@ function getCoordinatesForMap(){
             // Coordinates
             const lat = finder.geography.latitude;
             const long = finder.geography.longitude;
-            const xx = grid.push(lat);
-            const yy = grid.push(long);
+            grid.push(lat);
+            grid.push(long);
         });
 
-        // Returns an array holding coordinates
+        // Returns coordinates array
         return grid;
     })
 
@@ -215,7 +206,7 @@ function initMap(gridlock){
 };
 
 // Connecting flight info to airport to city to weather
-function connectingFlightInfoToWeatherInfo(){
+function connectFlightInfoToWeatherInfo(){
     
     // Holds submitted form
     event.preventDefault();
@@ -228,19 +219,20 @@ function connectingFlightInfoToWeatherInfo(){
     .then((data) =>{
 
         // Using submitted form to match with flight info
-        const userFlightInput = document.querySelector('[data-inputInfo]').value;
         let planeObj = data.filter((planeFinder) =>{
             if ((userFlightInput) === (planeFinder.flight.iataNumber)){
                 return true;
             };
         });
+
+        // Arrival airport code
         let arrivalCode = planeObj[0].arrival.iataCode;
 
         // Returns arrival code
         return arrivalCode;
     })
     
-    // Using airport code from flight info to match with airport api
+    // Using airport code to match with airport api
     .then((compare) =>{
 
         // Fetch Flight API and convert to Json
@@ -254,13 +246,15 @@ function connectingFlightInfoToWeatherInfo(){
                     return true;
                 };
             })
+
+            // Destination city code
             let cityCode = levelOne[0].codeIataCity
             
             // Returns city code
             return cityCode;
         })
 
-        // Using city iata code grab city name from city API
+        // Using city iata code to grab city name from city API
         .then((city) =>{
 
              // Fetch Flight API and convert to Json
@@ -305,17 +299,14 @@ function getWeatherInfo (city) {
         // Current temperature
         let mainTemp = temp.main.temp;
         let mainDeg = (((mainTemp - 273.15) * 1.8) + 32).toFixed(0);
-        // console.log('Returned temp');
         
         // Min temperature
         let minTemp  = temp.main.temp_min;
         let minDeg = (((minTemp - 273.15) * 1.8) + 32).toFixed(0); 
-        // console.log('Returned min temp');
 
         // Max temperature
         let maxTemp = temp.main.temp_max;
         let maxDeg = (((maxTemp - 273.15) * 1.8) + 32).toFixed(0);
-        // console.log('Returned max temp');
 
         // Push the three temperatures into array
         let temperatures = []; 
@@ -335,21 +326,18 @@ function getWeatherInfo (city) {
         const mainTemp = document.createElement('div');
         mainTemp.textContent = `${larry[0]} °F`;
         getTemp.appendChild(mainTemp);
-        // console.log(mainTemp);
 
         // Appending min temperature
         const getMin = document.querySelector('[data-minWeather]');
         const minTemp = document.createElement('div');
         minTemp.textContent = `${larry[1]} °F`;
         getMin.appendChild(minTemp);
-        // console.log(minTemp);
 
         // Appending max temperature
         const getMax = document.querySelector('[data-maxWeather]');
         const maxTemp = document.createElement('div');
         maxTemp.textContent = `${larry[2]} °F`;
         getMax.appendChild(maxTemp);
-        // console.log(maxTemp);
     })
 
     // Returns true
@@ -358,10 +346,9 @@ function getWeatherInfo (city) {
 
 // One function that will start the three other functions
 function getAllFunctions(){
-    clearAll();
     getFlightInfo();
     getCoordinatesForMap();
-    connectingFlightInfoToWeatherInfo();
+    connectFlightInfoToWeatherInfo();
 };
 
 // Main starter
